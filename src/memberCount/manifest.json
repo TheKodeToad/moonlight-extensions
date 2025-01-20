@@ -1,0 +1,13 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "memberCount",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "meta": {
+    "name": "Member Count",
+    "tagline": "Show the online and total member count of each server.",
+    "description": "IDK what to put here lol",
+    "authors": ["TheKodeToad"],
+    "source": "https://github.com/TheKodeToad/moonlight-extensions"
+  }
+}

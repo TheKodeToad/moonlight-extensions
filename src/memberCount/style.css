@@ -1,0 +1,5 @@
+.memberCount-container {
+	display: flex;
+	font-size: 14px;
+	gap: 6px;
+}
