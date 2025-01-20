@@ -4,7 +4,7 @@ export const patches: ExtensionWebExports["patches"] = [
 	{
 		find: '"GuildHeader"',
 		replace: {
-			match: /(?<=variant:"text-md\/semibold",lineClamp:1,className:\i\.name,children:)\i.toString\(\)/,
+			match: /\(0,\i\.jsx\)\(\i\.Heading,{variant:"text-md\/semibold",lineClamp:1,className:\i\.name,children:\i.toString\(\)\}\)/,
 			replacement: "require('memberCount_components').wrapGuildNameComponent(arguments[0].guild,$&)"
 		}
 	}
@@ -13,6 +13,11 @@ export const patches: ExtensionWebExports["patches"] = [
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
 	components: {
-		dependencies: []
+		dependencies: [
+			{ id: "react" },
+			{ id: "discord/packages/flux" },
+			{ ext: "common", id: "stores" },
+			{ ext: "spacepack", id: "spacepack" }
+		]
 	}
 };

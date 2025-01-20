@@ -16,7 +16,7 @@ export function wrapGuildNameComponent(guild, children: React.ReactNode) {
 
 function GuildNameWrapper({ guild, children }: { guild; children: React.ReactNode }) {
 	return (
-		<div>
+		<div className={"memberCount-guild-name-wrapper"}>
 			{children}
 			<MemberCount guild={guild} />
 		</div>
