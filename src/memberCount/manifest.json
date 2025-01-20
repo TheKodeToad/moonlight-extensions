@@ -6,6 +6,7 @@
 	"meta": {
 		"name": "Member Count",
 		"tagline": "Show the online and total member count of each server.",
+		"description": "This plugin displays the online and total member count below the server name on the channel sidebar.  If it does not appear you might need to show the member list or click on a text channel (to be fixed).",
 		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/memberCount"
 	},
