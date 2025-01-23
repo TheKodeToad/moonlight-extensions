@@ -1,0 +1,71 @@
+{
+	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+	"id": "customUserTags",
+	"version": "1.0.0",
+	"apiLevel": 2,
+	"meta": {
+		"name": "Custom User Tags",
+		"tagline": "Display custom tags next to usernames such as Admin or Staff.",
+		"description": "Displays custom tags next to usernames in the member list based on permissions.",
+		"authors": ["TheKodeToad"],
+		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/customUserTags",
+		"tags": ["qol"]
+	},
+	"settings": {
+		"style": {
+			"type": "select",
+			"options": [
+				{ "label": "Pill (fully rounded)", "value": "pill" },
+				{ "label": "Standard (less rounded)", "value": "standard" }
+			],
+			"displayName": "Style",
+			"default": "pill"
+		},
+		"capitalizeText": {
+			"type": "boolean",
+			"displayName": "Capitalize text on tags",
+			"default": true
+		},
+		"onlyShowFirst": {
+			"type": "boolean",
+			"displayName": "Only show the first tag",
+			"default": true
+		},
+		"customizeTags": {
+			"type": "boolean",
+			"displayName": "Customize tags",
+			"default": false
+		},
+		"tags": {
+			"type": "custom",
+			"default": [
+				{
+					"label": "Owner",
+					"permissions": ["OWNER"]
+				},
+				{
+					"label": "Admin",
+					"permissions": ["ADMINISTRATOR"]
+				},
+				{
+					"label": "Manager",
+					"permissions": ["MANAGE_CHANNELS", "MANAGE_GUILD", "MANAGE_ROLES"]
+				},
+				{
+					"label": "Mod",
+					"permissions": [
+						"KICK_MEMBERS",
+						"BAN_MEMBERS",
+						"MUTE_MEMBERS",
+						"DEAFEN_MEMBERS",
+						"MOVE_MEMBERS",
+						"MANAGE_NICKNAMES",
+						"MODERATE_MEMBERS"
+					]
+				}
+			],
+			"advice": "none"
+		}
+	},
+	"dependencies": ["moonbase", "spacepack", "common"]
+}
