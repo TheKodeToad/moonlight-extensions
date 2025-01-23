@@ -1,6 +1,5 @@
 import { CustomComponentProps } from "@moonlight-mod/types/coreExtensions/moonbase";
 import {
-	ArrowSmallUpIcon,
 	Button,
 	Card,
 	ChevronLargeDownIcon,
@@ -17,7 +16,7 @@ import React from "@moonlight-mod/wp/react";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants"; // typing issue to be fixed, just ignore errors
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
-import { marginBottom20, marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
+import { marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
@@ -101,7 +100,7 @@ function TagSettings({
 
 	return (
 		<Card style={{ padding: 16 }}>
-			<Flex direction={Flex.Direction.HORIZONTAL}>
+			<Flex direction={Flex.Direction.HORIZONTAL} style={{ gap: 8 }}>
 				<PanelButton
 					icon={ChevronLargeUpIcon}
 					tooltipText={"Move Up"}
