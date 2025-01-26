@@ -26,11 +26,6 @@
 			"displayName": "Capitalize text on tags",
 			"default": true
 		},
-		"onlyShowFirst": {
-			"type": "boolean",
-			"displayName": "Only show the first tag",
-			"default": true
-		},
 		"customizeTags": {
 			"type": "boolean",
 			"displayName": "Customize tags",

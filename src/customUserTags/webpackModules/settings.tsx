@@ -13,23 +13,19 @@ import {
 } from "@moonlight-mod/wp/discord/components/common/index";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import React from "@moonlight-mod/wp/react";
-import { Permissions } from "@moonlight-mod/wp/discord/Constants"; // typing issue to be fixed, just ignore errors
+import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
 import { marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
+import { TagData } from "customUserTags/types";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
-
-export interface Tag {
-	label: string;
-	permissions: (keyof typeof Permissions | "OWNER")[];
-}
 
 export default function TagsSettings({
 	value: tags,
 	setValue
-}: Omit<CustomComponentProps, "value"> & { value: Tag[] }) {
+}: Omit<CustomComponentProps, "value"> & { value: TagData[] }) {
 	const onChange = () => setValue(tags);
 
 	const children = tags.map((tag, i) => (
@@ -88,7 +84,7 @@ function TagSettings({
 	onMoveDown,
 	onDelete
 }: {
-	tag: Tag;
+	tag: TagData;
 	canMoveUp: boolean;
 	canMoveDown: boolean;
 	onChange: () => void;

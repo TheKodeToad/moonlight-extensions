@@ -1,0 +1,7 @@
+.customUserTags-tag-pill {
+	border-radius: 8px !important;
+}
+
+.customUserTags-tag {
+	background-color: var(--bg-mod-strong);
+}
