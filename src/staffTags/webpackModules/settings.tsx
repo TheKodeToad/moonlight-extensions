@@ -160,4 +160,4 @@ function createPermissionOptions() {
 	return result;
 }
 
-Moonbase.registerConfigComponent("customUserTags", "tags", TagsSettings);
+Moonbase.registerConfigComponent("staffTags", "tags", TagsSettings);

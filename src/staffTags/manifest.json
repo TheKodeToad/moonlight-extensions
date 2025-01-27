@@ -18,7 +18,8 @@
 				{ "label": "Standard (less rounded)", "value": "standard" }
 			],
 			"displayName": "Style",
-			"default": "pill"
+			"default": "pill",
+			"advice": "none"
 		},
 		"capitalizeText": {
 			"type": "boolean",

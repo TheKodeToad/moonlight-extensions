@@ -38,7 +38,7 @@ function getPermissionsSet(user, guild) {
 function Tag({ user, guild, location, compact }: { user; guild; location: "chat" | "memberList"; compact?: boolean }) {
 	const permissionsSet = getPermissionsSet(user, guild);
 
-	const tags = moonlight.getConfigOption("customUserTags", "tags") as TagData[];
+	const tags = moonlight.getConfigOption("staffTags", "tags") as TagData[];
 	const tag = tags.find((tag) => tag.permissions.some((permission) => permissionsSet.has(permission)));
 
 	if (tag === undefined) return undefined;
@@ -56,8 +56,8 @@ function Tag({ user, guild, location, compact }: { user; guild; location: "chat"
 			break;
 	}
 
-	classes.push("customUserTags-tag");
-	classes.push("customUserTags-tag-" + moonlight.getConfigOption("customUserTags", "style"));
+	classes.push("staffTags-tag");
+	classes.push("staffTags-tag-" + moonlight.getConfigOption("staffTags", "style"));
 
 	return (
 		<span className={classes.join(" ")}>
@@ -67,13 +67,13 @@ function Tag({ user, guild, location, compact }: { user; guild; location: "chat"
 }
 
 memberList.addDecorator(
-	"customUserTags",
+	"staffTags-tag",
 	({ user, channel }) =>
 		channel?.guild_id && <Tag user={user} guild={GuildStore.getGuild(channel.guild_id)} location="memberList" />,
 	"bot-tag"
 );
 message.addToUsername(
-	"customUserTags-cozy",
+	"staffTags-tag-cozy",
 	({ message, guildId, compact }) =>
 		!compact &&
 		message?.author &&
@@ -81,7 +81,7 @@ message.addToUsername(
 	"username"
 );
 message.addToUsername(
-	"customUserTags-compact",
+	"staffTags-tag-compact",
 	({ message, guildId, compact }) =>
 		compact &&
 		message?.author &&
