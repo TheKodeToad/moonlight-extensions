@@ -73,9 +73,19 @@ memberList.addDecorator(
 	"bot-tag"
 );
 message.addToUsername(
-	"customUserTags",
-	({ message, guildId }) =>
+	"customUserTags-cozy",
+	({ message, guildId, compact }) =>
+		!compact &&
 		message?.author &&
-		guildId && <Tag user={message.author} guild={GuildStore.getGuild(guildId)} location="chat" />,
+		guildId && <Tag user={message.author} guild={GuildStore.getGuild(guildId)} location="chat" compact={false} />,
 	"username"
+);
+message.addToUsername(
+	"customUserTags-compact",
+	({ message, guildId, compact }) =>
+		compact &&
+		message?.author &&
+		guildId && <Tag user={message.author} guild={GuildStore.getGuild(guildId)} location="chat" compact={true} />,
+	"username",
+	true
 );
