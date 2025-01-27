@@ -1,14 +1,13 @@
 {
 	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
-	"id": "customUserTags",
+	"id": "staffTags",
 	"version": "1.0.0",
 	"apiLevel": 2,
 	"meta": {
-		"name": "Custom User Tags",
-		"tagline": "Display custom tags next to usernames such as Admin or Staff.",
-		"description": "Displays custom tags next to usernames in the member list based on permissions.",
+		"name": "Staff Tags",
+		"tagline": "Display tags next to staff usernames based on permissions.",
 		"authors": ["TheKodeToad"],
-		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/customUserTags",
+		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/staffTags",
 		"tags": ["qol"]
 	},
 	"settings": {

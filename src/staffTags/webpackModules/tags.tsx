@@ -3,7 +3,7 @@ import React from "@moonlight-mod/wp/react";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { GuildStore } from "@moonlight-mod/wp/common_stores";
-import { TagData } from "customUserTags/types";
+import { TagData } from "staffTags/types";
 import message from "@moonlight-mod/wp/componentEditor_messages";
 
 const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())&&void 0")[0].exports;

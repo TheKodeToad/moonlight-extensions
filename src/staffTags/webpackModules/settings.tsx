@@ -18,7 +18,7 @@ import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
 import { marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
-import { TagData } from "customUserTags/types";
+import { TagData } from "staffTags/types";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
 
