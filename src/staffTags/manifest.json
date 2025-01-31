@@ -6,45 +6,75 @@
 	"meta": {
 		"name": "Staff Tags",
 		"tagline": "Display tags next to staff usernames based on permissions.",
-		"authors": ["TheKodeToad"],
+		"authors": [
+			"TheKodeToad"
+		],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/staffTags",
-		"tags": ["qol"]
+		"tags": [
+			"qol",
+			"chat"
+		]
 	},
 	"settings": {
 		"style": {
 			"type": "select",
 			"options": [
-				{ "label": "Pill (fully rounded)", "value": "pill" },
-				{ "label": "Standard (less rounded)", "value": "standard" }
+				{
+					"label": "Text",
+					"value": "text"
+				},
+				{
+					"label": "Icon",
+					"value": "icon"
+				}
 			],
 			"displayName": "Style",
-			"default": "pill",
+			"default": "text",
+			"advice": "none"
+		},
+		"rounded": {
+			"type": "boolean",
+			"displayName": "Rounded corners on tags",
+			"default": true,
 			"advice": "none"
 		},
 		"capitalizeText": {
 			"type": "boolean",
 			"displayName": "Capitalize text on tags",
-			"default": true
+			"default": true,
+			"advice": "none"
 		},
 		"customizeTags": {
 			"type": "boolean",
 			"displayName": "Customize tags",
-			"default": false
+			"default": false,
+			"advice": "none"
 		},
 		"tags": {
 			"type": "custom",
 			"default": [
 				{
 					"label": "Owner",
-					"permissions": ["OWNER"]
+					"permissions": [
+						"OWNER"
+					],
+					"icon": "crown"
 				},
 				{
 					"label": "Admin",
-					"permissions": ["ADMINISTRATOR"]
+					"permissions": [
+						"ADMINISTRATOR"
+					],
+					"icon": "shield"
 				},
 				{
 					"label": "Manager",
-					"permissions": ["MANAGE_CHANNELS", "MANAGE_GUILD", "MANAGE_ROLES"]
+					"permissions": [
+						"MANAGE_CHANNELS",
+						"MANAGE_GUILD",
+						"MANAGE_ROLES"
+					],
+					"icon": "wrench"
 				},
 				{
 					"label": "Mod",
@@ -56,11 +86,17 @@
 						"MOVE_MEMBERS",
 						"MANAGE_NICKNAMES",
 						"MODERATE_MEMBERS"
-					]
+					],
+					"icon": "hammer"
 				}
 			],
 			"advice": "none"
 		}
 	},
-	"dependencies": ["moonbase", "spacepack", "common"]
+	"dependencies": [
+		"moonbase",
+		"spacepack",
+		"common",
+		"componentEditor"
+	]
 }

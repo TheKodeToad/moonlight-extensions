@@ -1,4 +1,5 @@
-import { ExtensionWebExports } from "@moonlight-mod/types";
+import { ExtensionWebExports, ModuleExportType } from "@moonlight-mod/types";
+import "./mappings";
 
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
 	settings: {
@@ -21,5 +22,6 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			"computeLurkerPermissionsAllowList())&&void 0"
 		],
 		entrypoint: true // register the decorators
-	}
+	},
+	constants: {}
 };
