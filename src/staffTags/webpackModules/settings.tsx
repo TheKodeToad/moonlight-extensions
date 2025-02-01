@@ -14,10 +14,11 @@ import React, { useMemo } from "@moonlight-mod/wp/react";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
-import { marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
+import { marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
 import { Tag } from "staffTags/types";
 import { Icons } from "@moonlight-mod/wp/staffTags_constants";
+import { FormText } from "@moonlight-mod/wp/discord/components/common/index";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
 
@@ -124,7 +125,8 @@ function TagSettingsComponent({
 			</div>
 			<div className={marginTop20}>
 				<FormTitle>Icon</FormTitle>
-				<TagIconComponent
+				<FormText className={marginBottom8}>This will only show for the “Icon” style.</FormText>
+				<TagIconSelect
 					value={tag.icon}
 					setValue={(value) => {
 						tag.icon = value;
@@ -134,7 +136,7 @@ function TagSettingsComponent({
 			</div>
 			<div className={marginTop20}>
 				<FormTitle>Permissions</FormTitle>
-				<TagPermissionsComponent
+				<TagPermissionsSelect
 					value={tag.permissions}
 					setValue={(value) => {
 						tag.permissions = value;
@@ -146,7 +148,7 @@ function TagSettingsComponent({
 	);
 }
 
-function TagPermissionsComponent({
+function TagPermissionsSelect({
 	value,
 	setValue
 }: {
@@ -166,7 +168,7 @@ function TagPermissionsComponent({
 	);
 }
 
-function TagIconComponent({ value, setValue }: { value: Tag["icon"]; setValue: (value: Tag["icon"]) => void }) {
+function TagIconSelect({ value, setValue }: { value: Tag["icon"]; setValue: (value: Tag["icon"]) => void }) {
 	return (
 		<SearchableSelect
 			options={Object.entries(Icons).map(([key, icon]) => ({ label: icon.displayName, value: key }))}
@@ -175,7 +177,7 @@ function TagIconComponent({ value, setValue }: { value: Tag["icon"]; setValue: (
 			renderOptionPrefix={(option) => {
 				if (option === null) return undefined;
 
-				const Icon = Components[Icons[option.value].discordName?.concat("Icon")];
+				const Icon = Components[Icons[option.value]?.discordName?.concat("Icon")];
 
 				if (Icon === undefined) return undefined;
 

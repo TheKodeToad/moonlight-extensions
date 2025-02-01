@@ -7,6 +7,7 @@ import { Tag } from "staffTags/types";
 import Components from "@moonlight-mod/wp/discord/components/common/index";
 import message from "@moonlight-mod/wp/componentEditor_messages";
 import { Icons } from "@moonlight-mod/wp/staffTags_constants";
+import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 
 const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())&&void 0")[0].exports;
 const computePermissions = Object.values(PermissionUtils).find(
@@ -38,55 +39,59 @@ function TagComponent({
 
 	if (tag === undefined) return undefined;
 
-	const props = { tag, location, compact };
+	const style = moonlight.getConfigOption("staffTags", "style");
 
-	switch (moonlight.getConfigOption("staffTags", "style")) {
+	let className = `staffTags-tag staffTags-tag-${style} staffTags-tag-${location}`;
+
+	if (compact) className += " staffTags-tag-compact";
+
+	switch (style) {
 		case "text":
-			return <TextTagComponent {...props} />;
+			return <TextTagComponent tag={tag} location={location} compact={compact} className={className} />;
 		case "icon":
-			return <IconTagComponent {...props} />;
+			return <IconTagComponent tag={tag} className={className} />;
 	}
 }
 
 function TextTagComponent({
 	tag,
+	className,
 	location,
 	compact
 }: {
 	tag: Tag;
+	className: string;
 	location: "chat" | "memberList";
 	compact?: boolean;
 }) {
-	const classes = [botTagClasses.botTagRegular];
+	let classNamePrefix: string;
 
 	switch (location) {
 		case "memberList":
-			classes.unshift(memberListClasses.botTag);
-			classes.push(botTagClasses.px);
+			classNamePrefix = `${botTagClasses.botTagRegular} ${memberListClasses.botTag} ${botTagClasses.px}`;
 			break;
 		case "chat":
-			classes.unshift(compact ? chatClasses.botTagCompact : chatClasses.botTagCozy);
-			classes.push(botTagClasses.rem);
+			classNamePrefix = `${botTagClasses.botTagRegular} ${compact ? chatClasses.botTagCompact : chatClasses.botTagCozy} ${botTagClasses.rem}`;
 			break;
 	}
 
-	classes.push("staffTags-tag");
-	classes.push("staffTags-tag-text");
-	if (moonlight.getConfigOption("staffTags", "rounded")) classes.push("staffTags-tag-rounded");
-
 	return (
-		<span className={classes.join(" ")}>
+		<span className={classNamePrefix + " " + className}>
 			<span className={botTagClasses.botText}>{tag.label}</span>
 		</span>
 	);
 }
 
-function IconTagComponent({ tag, location, compact }: { tag: Tag; location: "chat" | "memberList"; compact?: boolean }) {
-	const Icon = Components[Icons[tag.icon].discordName?.concat("Icon")];
+function IconTagComponent({ tag, className }: { tag: Tag; className: string }) {
+	const Icon = Components[Icons[tag.icon]?.discordName?.concat("Icon")];
 
 	if (Icon === undefined) return undefined;
 
-	return <Icon />;
+	return (
+		<Tooltip text={tag.label}>
+			{(props) => <Icon className={memberListClasses.icon + " " + className} {...props} />}
+		</Tooltip>
+	);
 }
 
 function getPermissionsSet(user, guild) {

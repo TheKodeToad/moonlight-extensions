@@ -19,7 +19,7 @@ const _icons = {
 		discordName: "Key",
 		displayName: "Key"
 	},
-	moderation: {
+	swords: {
 		discordName: "Moderation",
 		displayName: "Swords"
 	}

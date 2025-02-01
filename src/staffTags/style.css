@@ -1,3 +1,13 @@
 .staffTags-tag-pill {
 	border-radius: 8px !important;
 }
+
+.staffTags-tag-icon {
+	margin-left: 0.25rem;
+}
+
+.staffTags-tag-icon.staffTags-tag-chat {
+	margin-top: 0.25rem;
+	width: 0.875rem;
+	height: 0.875rem;
+}
