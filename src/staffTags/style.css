@@ -7,7 +7,9 @@
 }
 
 .staffTags-tag-icon.staffTags-tag-chat {
-	margin-top: 0.25rem;
+	/* Don't ask */
+	position: relative;
+	top: 0.0625rem;
 	width: 0.875rem;
 	height: 0.875rem;
 }
