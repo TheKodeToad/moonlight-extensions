@@ -1,13 +1,12 @@
-import memberList from "@moonlight-mod/wp/componentEditor_memberList";
-import React from "@moonlight-mod/wp/react";
-import { Permissions } from "@moonlight-mod/wp/discord/Constants";
-import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { GuildStore } from "@moonlight-mod/wp/common_stores";
-import { Tag } from "staffTags/types";
-import Components from "@moonlight-mod/wp/discord/components/common/index";
+import memberList from "@moonlight-mod/wp/componentEditor_memberList";
 import message from "@moonlight-mod/wp/componentEditor_messages";
+import Components, { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
+import { Permissions } from "@moonlight-mod/wp/discord/Constants";
+import React from "@moonlight-mod/wp/react";
+import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { Icons } from "@moonlight-mod/wp/staffTags_constants";
-import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
+import { Tag } from "staffTags/types";
 
 const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())&&void 0")[0].exports;
 const computePermissions = Object.values(PermissionUtils).find(
