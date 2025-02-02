@@ -3,7 +3,7 @@
 }
 
 .staffTags-tag-icon {
-	margin-left: 0.25rem;
+	margin-left: 4px;
 }
 
 .staffTags-tag-icon.staffTags-tag-chat {
@@ -12,6 +12,13 @@
 	top: 0.0625rem;
 	width: 0.875rem;
 	height: 0.875rem;
+}
+
+.staffTags-tag-icon.staffTags-tag-chat:not(.staffTags-tag-compact) {
+	margin-left: 0.25rem;
+}
+.staffTags-tag-icon.staffTags-tag-chat.staffTags-tag-compact {
+	margin-right: 0.25rem;
 }
 
 /* use !important as these settings are off by default and discord sometimes likes to break things */
