@@ -45,6 +45,9 @@ function TagComponent({
 
 	if (compact) className += " staffTags-tag-compact";
 
+	if (moonlight.getConfigOption("staffTags", "rounded") === true) className += " staffTags-tag-rounded";
+	if (moonlight.getConfigOption("staffTags", "capitalizeText") === false) className += " staffTags-tag-uncapitalize";
+
 	switch (style) {
 		case "text":
 			return <TextTagComponent tag={tag} location={location} compact={compact} className={className} />;

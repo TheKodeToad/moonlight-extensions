@@ -13,3 +13,13 @@
 	width: 0.875rem;
 	height: 0.875rem;
 }
+
+/* use !important as these settings are off by default and discord sometimes likes to break things */
+
+.staffTags-tag-text.staffTags-tag-uncapitalize {
+	text-transform: none !important;
+}
+
+.staffTags-tag-text.staffTags-tag-rounded {
+	border-radius: 9999px !important; /* lol i am so good at css */
+}
