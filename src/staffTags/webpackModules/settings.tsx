@@ -14,67 +14,76 @@ import React, { useMemo } from "@moonlight-mod/wp/react";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
-import { marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
+import { marginBottom20, marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
 import { Tag } from "staffTags/types";
-import { Icons } from "@moonlight-mod/wp/staffTags_constants";
+import { Icons, BLURPLE, default_config } from "@moonlight-mod/wp/staffTags_constants";
 import { FormText } from "@moonlight-mod/wp/discord/components/common/index";
+import { cardHeader } from "@moonlight-mod/wp/discord/modules/guild_settings/web/AppCard.css";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
 const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode('.swatch,"aria-label"')[0].exports.Z;
 
 export default function TagsSettingsComponent({
-	value: tags,
+	value: tags = default_config(),
 	setValue
 }: Omit<CustomComponentProps, "value"> & { value: Tag[] }) {
 	const onChange = () => setValue(tags);
 
-	const children = tags.map((tag, i) => (
-		<TagSettingsComponent
-			key={i} // does nothing because the component is always re-rendered :troll:
-			tag={tag}
-			canMoveUp={i > 0}
-			canMoveDown={i < tags.length - 1}
-			onChange={onChange}
-			onMoveUp={() => {
-				tags.splice(i, 1);
-				tags.splice(i - 1, 0, tag);
-				onChange();
-			}}
-			onMoveDown={() => {
-				tags.splice(i, 1);
-				tags.splice(i + 1, 0, tag);
-				onChange();
-			}}
-			onDelete={() => {
-				tags.splice(i, 1);
-				onChange();
-			}}
-		/>
-	));
-
-	children.push(
-		<Button
-			size={Button.Sizes.SMALL}
-			color={Button.Colors.GREEN}
-			onClick={() => {
-				tags.push({
-					label: "",
-					icon: "shield",
-					color: 0x5865f2,
-					permissions: []
-				});
-				onChange();
-			}}
-		>
-			Add a new tag
-		</Button>
-	);
-
 	return (
-		<Flex direction={Flex.Direction.VERTICAL} style={{ gap: 16 }}>
-			{children}
-		</Flex>
+		<div>
+			<FormTitle>Tags</FormTitle>
+			<Button
+				size={Button.Sizes.SMALL}
+				color={Button.Colors.RED}
+				className={marginBottom8}
+				onClick={() => setValue(default_config())}
+			>
+				Restore Defaults
+			</Button>
+			<Flex direction={Flex.Direction.VERTICAL} style={{ gap: 16 }} className={marginBottom8}>
+				{[
+					...tags.map((tag, i) => (
+						<TagSettingsComponent
+							key={i}
+							tag={tag}
+							canMoveUp={i > 0}
+							canMoveDown={i < tags.length - 1}
+							onChange={onChange}
+							onMoveUp={() => {
+								tags.splice(i, 1);
+								tags.splice(i - 1, 0, tag);
+								onChange();
+							}}
+							onMoveDown={() => {
+								tags.splice(i, 1);
+								tags.splice(i + 1, 0, tag);
+								onChange();
+							}}
+							onDelete={() => {
+								tags.splice(i, 1);
+								onChange();
+							}}
+						/>
+					)),
+					<Button
+						size={Button.Sizes.SMALL}
+						color={Button.Colors.GREEN}
+						onClick={() => {
+							tags.push({
+								label: "",
+								icon: "shield",
+								color: BLURPLE,
+								permissions: []
+							});
+							onChange();
+						}}
+					>
+						Add a new tag
+					</Button>
+				]}
+			</Flex>
+		</div>
 	);
 }
 
@@ -98,8 +107,8 @@ function TagSettingsComponent({
 	onDelete
 }: TagSettingsProps) {
 	return (
-		<Card style={{ padding: 16 }}>
-			<Flex direction={Flex.Direction.HORIZONTAL} style={{ gap: 8 }}>
+		<Card>
+			<Flex direction={Flex.Direction.HORIZONTAL} style={{ gap: 8 }} className={cardHeader}>
 				<PanelButton
 					icon={ChevronLargeUpIcon}
 					tooltipText={"Move Up"}
@@ -112,30 +121,28 @@ function TagSettingsComponent({
 					disabled={!canMoveDown}
 					onClick={onMoveDown}
 				/>
-				<span style={{ marginLeft: "auto" }} />
+				<div style={{ flexGrow: 1 }}>
+					<TextInput
+						value={tag.label}
+						onChange={(value) => {
+							tag.label = value;
+							onChange();
+						}}
+					/>
+				</div>
 				<PanelButton icon={TrashIcon} tooltipText="Remove Tag" onClick={onDelete} />
 			</Flex>
-			<div className={marginTop20}>
-				<FormTitle>Label</FormTitle>
-				<TextInput
-					value={tag.label}
-					onChange={(value) => {
-						tag.label = value;
-						onChange();
-					}}
-				/>
-			</div>
-			<div className={marginTop20}>
+			<div style={{ padding: 16 }}>
 				<FormTitle>Color</FormTitle>
-				<ColorSwatch
-					color={tag.color}
-					onChange={(value) => {
-						tag.color = value;
-						onChange();
-					}}
-				/>
-			</div>
-			<div className={marginTop20}>
+				<div className={marginBottom20}>
+					<ColorSwatch
+						color={tag.color}
+						onChange={(value) => {
+							tag.color = value;
+							onChange();
+						}}
+					/>
+				</div>
 				<FormTitle>Icon</FormTitle>
 				<FormText className={marginBottom8}>This will only show for the “Icon” style.</FormText>
 				<TagIconSelect
@@ -144,9 +151,8 @@ function TagSettingsComponent({
 						tag.icon = value;
 						onChange();
 					}}
+					className={marginBottom20}
 				/>
-			</div>
-			<div className={marginTop20}>
 				<FormTitle>Permissions</FormTitle>
 				<TagPermissionsSelect
 					value={tag.permissions}
@@ -154,6 +160,7 @@ function TagSettingsComponent({
 						tag.permissions = value;
 						onChange();
 					}}
+					className={marginBottom20}
 				/>
 			</div>
 		</Card>
@@ -162,10 +169,12 @@ function TagSettingsComponent({
 
 function TagPermissionsSelect({
 	value,
-	setValue
+	setValue,
+	className
 }: {
 	value: Tag["permissions"];
 	setValue: (value: Tag["permissions"]) => void;
+	className: string;
 }) {
 	const permissionOptions = useMemo(() => createPermissionOptions(), []);
 
@@ -176,11 +185,20 @@ function TagPermissionsSelect({
 			onChange={setValue}
 			multi={true}
 			placeholder="Select permissions"
+			className={className}
 		/>
 	);
 }
 
-function TagIconSelect({ value, setValue }: { value: Tag["icon"]; setValue: (value: Tag["icon"]) => void }) {
+function TagIconSelect({
+	value,
+	setValue,
+	className
+}: {
+	value: Tag["icon"];
+	setValue: (value: Tag["icon"]) => void;
+	className: string;
+}) {
 	return (
 		<SearchableSelect
 			options={Object.entries(Icons).map(([key, icon]) => ({ label: icon.displayName, value: key }))}
@@ -196,6 +214,7 @@ function TagIconSelect({ value, setValue }: { value: Tag["icon"]; setValue: (val
 				return <Icon size="sm" />;
 			}}
 			placeholder="Select an icon"
+			className={className}
 		/>
 	);
 }

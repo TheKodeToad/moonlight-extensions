@@ -44,56 +44,8 @@
 			"default": true,
 			"advice": "none"
 		},
-		"customizeTags": {
-			"type": "boolean",
-			"displayName": "Customize tags",
-			"default": false,
-			"advice": "none"
-		},
 		"tags": {
 			"type": "custom",
-			"default": [
-				{
-					"label": "Owner",
-					"icon": "crown",
-					"color": 5793266,
-					"permissions": [
-						"OWNER"
-					]
-				},
-				{
-					"label": "Admin",
-					"color": 5793266,
-					"permissions": [
-						"ADMINISTRATOR"
-					],
-					"icon": "shield"
-				},
-				{
-					"label": "Manager",
-					"icon": "wrench",
-					"color": 5793266,
-					"permissions": [
-						"MANAGE_CHANNELS",
-						"MANAGE_GUILD",
-						"MANAGE_ROLES"
-					]
-				},
-				{
-					"label": "Mod",
-					"icon": "hammer",
-					"color": 5793266,
-					"permissions": [
-						"KICK_MEMBERS",
-						"BAN_MEMBERS",
-						"MUTE_MEMBERS",
-						"DEAFEN_MEMBERS",
-						"MOVE_MEMBERS",
-						"MANAGE_NICKNAMES",
-						"MODERATE_MEMBERS"
-					]
-				}
-			],
 			"advice": "none"
 		}
 	},

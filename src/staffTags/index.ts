@@ -8,6 +8,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ id: "discord/components/common/index" },
 			{ id: "discord/styles/shared/Margins.css" },
 			{ id: "discord/components/common/PanelButton" },
+			{ id: "discord/modules/guild_settings/web/AppCard.css" },
 			{ id: "discord/Constants" },
 			{ ext: "spacepack", id: "spacepack" },
 			{ ext: "moonbase", id: "moonbase" },
