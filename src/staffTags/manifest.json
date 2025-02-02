@@ -55,13 +55,15 @@
 			"default": [
 				{
 					"label": "Owner",
+					"icon": "crown",
+					"color": 5793266,
 					"permissions": [
 						"OWNER"
-					],
-					"icon": "crown"
+					]
 				},
 				{
 					"label": "Admin",
+					"color": 5793266,
 					"permissions": [
 						"ADMINISTRATOR"
 					],
@@ -69,15 +71,18 @@
 				},
 				{
 					"label": "Manager",
+					"icon": "wrench",
+					"color": 5793266,
 					"permissions": [
 						"MANAGE_CHANNELS",
 						"MANAGE_GUILD",
 						"MANAGE_ROLES"
-					],
-					"icon": "wrench"
+					]
 				},
 				{
 					"label": "Mod",
+					"icon": "hammer",
+					"color": 5793266,
 					"permissions": [
 						"KICK_MEMBERS",
 						"BAN_MEMBERS",
@@ -86,8 +91,7 @@
 						"MOVE_MEMBERS",
 						"MANAGE_NICKNAMES",
 						"MODERATE_MEMBERS"
-					],
-					"icon": "hammer"
+					]
 				}
 			],
 			"advice": "none"

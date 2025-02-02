@@ -11,7 +11,8 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ id: "discord/Constants" },
 			{ ext: "spacepack", id: "spacepack" },
 			{ ext: "moonbase", id: "moonbase" },
-			"getGuildPermissionSpecMap:"
+			"getGuildPermissionSpecMap:",
+			'.swatch,"aria-label"'
 		],
 		entrypoint: true // register the settings component
 	},

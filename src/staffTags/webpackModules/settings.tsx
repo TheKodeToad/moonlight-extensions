@@ -21,6 +21,7 @@ import { Icons } from "@moonlight-mod/wp/staffTags_constants";
 import { FormText } from "@moonlight-mod/wp/discord/components/common/index";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
+const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode('.swatch,"aria-label"')[0].exports.Z;
 
 export default function TagsSettingsComponent({
 	value: tags,
@@ -60,6 +61,7 @@ export default function TagsSettingsComponent({
 				tags.push({
 					label: "",
 					icon: "shield",
+					color: 0x5865f2,
 					permissions: []
 				});
 				onChange();
@@ -119,6 +121,16 @@ function TagSettingsComponent({
 					value={tag.label}
 					onChange={(value) => {
 						tag.label = value;
+						onChange();
+					}}
+				/>
+			</div>
+			<div className={marginTop20}>
+				<FormTitle>Color</FormTitle>
+				<ColorSwatch
+					color={tag.color}
+					onChange={(value) => {
+						tag.color = value;
 						onChange();
 					}}
 				/>

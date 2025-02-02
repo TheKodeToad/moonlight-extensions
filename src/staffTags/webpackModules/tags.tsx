@@ -76,7 +76,7 @@ function TextTagComponent({
 	}
 
 	return (
-		<span className={classNamePrefix + " " + className}>
+		<span className={classNamePrefix + " " + className} style={{ background: "#" + tag.color.toString(16) }}>
 			<span className={botTagClasses.botText}>{tag.label}</span>
 		</span>
 	);
@@ -89,7 +89,13 @@ function IconTagComponent({ tag, className }: { tag: Tag; className: string }) {
 
 	return (
 		<Tooltip text={tag.label}>
-			{(props) => <Icon className={memberListClasses.icon + " " + className} {...props} />}
+			{(props) => (
+				<Icon
+					className={memberListClasses.icon + " " + className}
+					color={"#" + tag.color.toString(16)}
+					{...props}
+				/>
+			)}
 		</Tooltip>
 	);
 }
