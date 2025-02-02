@@ -34,7 +34,7 @@
 		},
 		"rounded": {
 			"type": "boolean",
-			"displayName": "Rounded corners on tags",
+			"displayName": "Rounded corners on text tags",
 			"default": true,
 			"advice": "none"
 		},
