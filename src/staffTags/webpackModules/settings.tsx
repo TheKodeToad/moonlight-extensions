@@ -17,7 +17,7 @@ import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
 import { marginBottom20, marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
 import { Tag } from "staffTags/types";
-import { Icons, BLURPLE, default_config } from "@moonlight-mod/wp/staffTags_constants";
+import { Icons, BLURPLE, defaultConfig as defaultConfig, defaultConfig } from "@moonlight-mod/wp/staffTags_constants";
 import { FormText } from "@moonlight-mod/wp/discord/components/common/index";
 import { cardHeader } from "@moonlight-mod/wp/discord/modules/guild_settings/web/AppCard.css";
 
@@ -25,7 +25,7 @@ const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSp
 const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode('.swatch,"aria-label"')[0].exports.Z;
 
 export default function TagsSettingsComponent({
-	value: tags = default_config(),
+	value: tags = defaultConfig(),
 	setValue
 }: Omit<CustomComponentProps, "value"> & { value: Tag[] }) {
 	const onChange = () => setValue(tags);
@@ -33,55 +33,51 @@ export default function TagsSettingsComponent({
 	return (
 		<div>
 			<FormTitle>Tags</FormTitle>
-			<Button
-				size={Button.Sizes.SMALL}
-				color={Button.Colors.RED}
-				className={marginBottom8}
-				onClick={() => setValue(default_config())}
-			>
-				Restore Defaults
-			</Button>
 			<Flex direction={Flex.Direction.VERTICAL} style={{ gap: 16 }} className={marginBottom8}>
-				{[
-					...tags.map((tag, i) => (
-						<TagSettingsComponent
-							key={i}
-							tag={tag}
-							canMoveUp={i > 0}
-							canMoveDown={i < tags.length - 1}
-							onChange={onChange}
-							onMoveUp={() => {
-								tags.splice(i, 1);
-								tags.splice(i - 1, 0, tag);
-								onChange();
-							}}
-							onMoveDown={() => {
-								tags.splice(i, 1);
-								tags.splice(i + 1, 0, tag);
-								onChange();
-							}}
-							onDelete={() => {
-								tags.splice(i, 1);
-								onChange();
-							}}
-						/>
-					)),
-					<Button
-						size={Button.Sizes.SMALL}
-						color={Button.Colors.GREEN}
-						onClick={() => {
-							tags.push({
-								label: "",
-								icon: "shield",
-								color: BLURPLE,
-								permissions: []
-							});
+				{tags.map((tag, i) => (
+					<TagSettingsComponent
+						key={i}
+						tag={tag}
+						canMoveUp={i > 0}
+						canMoveDown={i < tags.length - 1}
+						onChange={onChange}
+						onMoveUp={() => {
+							tags.splice(i, 1);
+							tags.splice(i - 1, 0, tag);
 							onChange();
 						}}
-					>
-						Add a new tag
-					</Button>
-				]}
+						onMoveDown={() => {
+							tags.splice(i, 1);
+							tags.splice(i + 1, 0, tag);
+							onChange();
+						}}
+						onDelete={() => {
+							tags.splice(i, 1);
+							onChange();
+						}}
+					/>
+				))}
+			</Flex>
+			<Flex direction={Flex.Direction.HORIZONTAL} style={{ gap: 8 }}>
+				<Button
+					size={Button.Sizes.SMALL}
+					color={Button.Colors.GREEN}
+					onClick={() => {
+						tags.push({
+							label: "",
+							icon: "shield",
+							color: BLURPLE,
+							permissions: []
+						});
+						onChange();
+					}}
+					style={{ flexGrow: 1 }}
+				>
+					Add a new tag
+				</Button>
+				<Button size={Button.Sizes.SMALL} color={Button.Colors.RED} onClick={() => setValue(defaultConfig())}>
+					Restore Defaults
+				</Button>
 			</Flex>
 		</div>
 	);
@@ -124,6 +120,7 @@ function TagSettingsComponent({
 				<div style={{ flexGrow: 1 }}>
 					<TextInput
 						value={tag.label}
+						placeholder="Label this tag"
 						onChange={(value) => {
 							tag.label = value;
 							onChange();

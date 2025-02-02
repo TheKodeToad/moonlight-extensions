@@ -2,7 +2,7 @@ import { Tag } from "staffTags/types";
 
 export const BLURPLE = 0x5865f2;
 // not technically a constant sorry
-export function default_config(): Tag[] {
+export function defaultConfig(): Tag[] {
 	return [
 		{
 			label: "Owner",
