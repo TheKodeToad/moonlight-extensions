@@ -21,7 +21,7 @@ const botTagClasses = spacepack.findByCode("px:", "rem:", "botTagOP:")[0].export
 const memberListClasses = spacepack.findByCode("botTag:", "ownerIcon:")[0].exports;
 const chatClasses = spacepack.findByCode("botTagCompact:", "botTagCozy:")[0].exports;
 
-function TagComponent({
+export function TagComponent({
 	user,
 	guild,
 	location,
