@@ -120,7 +120,7 @@ function TagSettingsComponent({
 				<div style={{ flexGrow: 1 }}>
 					<TextInput
 						value={tag.label}
-						placeholder="Label this tag"
+						placeholder="Add a label"
 						onChange={(value) => {
 							tag.label = value;
 							onChange();

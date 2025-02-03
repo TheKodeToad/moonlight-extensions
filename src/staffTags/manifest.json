@@ -6,14 +6,9 @@
 	"meta": {
 		"name": "Staff Tags",
 		"tagline": "Display tags next to staff usernames based on permissions.",
-		"authors": [
-			"TheKodeToad"
-		],
+		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/staffTags",
-		"tags": [
-			"qol",
-			"chat"
-		]
+		"tags": ["qol", "chat"]
 	},
 	"settings": {
 		"style": {
@@ -35,7 +30,7 @@
 		"rounded": {
 			"type": "boolean",
 			"displayName": "Rounded corners on text tags",
-			"default": true,
+			"default": false,
 			"advice": "none"
 		},
 		"capitalizeText": {
@@ -49,10 +44,5 @@
 			"advice": "none"
 		}
 	},
-	"dependencies": [
-		"moonbase",
-		"spacepack",
-		"common",
-		"componentEditor"
-	]
+	"dependencies": ["moonbase", "spacepack", "common", "componentEditor"]
 }

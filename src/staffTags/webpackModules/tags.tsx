@@ -7,6 +7,7 @@ import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { Icons } from "@moonlight-mod/wp/staffTags_constants";
 import { Tag } from "staffTags/types";
+import { defaultConfig } from "./constants";
 
 const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())&&void 0")[0].exports;
 const computePermissions = Object.values(PermissionUtils).find(
@@ -33,7 +34,7 @@ function TagComponent({
 }) {
 	const permissionsSet = getPermissionsSet(user, guild);
 
-	const tags = moonlight.getConfigOption("staffTags", "tags") as Tag[];
+	const tags = (moonlight.getConfigOption("staffTags", "tags") ?? defaultConfig()) as Tag[];
 	const tag = tags.find((tag) => tag.permissions.some((permission) => permissionsSet.has(permission)));
 
 	if (tag === undefined) return undefined;
