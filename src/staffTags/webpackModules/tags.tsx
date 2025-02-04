@@ -153,7 +153,7 @@ function getPermissionsSet(user, guild) {
 memberList.addDecorator(
 	"staffTags-tag",
 	({ user, channel, colorString }) =>
-		channel?.guild_id && (
+		channel?.guild_id != null && (
 			<TagComponent
 				user={user}
 				guild={GuildStore.getGuild(channel.guild_id)}
@@ -167,8 +167,8 @@ message.addToUsername(
 	"staffTags-tag-cozy",
 	({ message, guildId, compact, author }) =>
 		!compact &&
-		message?.author &&
-		guildId && (
+		message?.author != null &&
+		guildId != null && (
 			<TagComponent
 				user={message.author}
 				roleColor={author?.colorString}
@@ -183,8 +183,8 @@ message.addToUsername(
 	"staffTags-tag-compact",
 	({ message, guildId, compact, author }) =>
 		compact &&
-		message?.author &&
-		guildId && (
+		message?.author != null &&
+		guildId != null && (
 			<TagComponent
 				user={message.author}
 				roleColor={author?.colorString}

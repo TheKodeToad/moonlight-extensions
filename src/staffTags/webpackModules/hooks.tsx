@@ -13,7 +13,7 @@ export function repliedMessageTag({ referencedMessage, channel, repliedAuthor })
 	const author = referencedMessage?.message?.author;
 	const guildId = channel?.guild_id;
 
-	if (author === undefined || guildId === undefined) return;
+	if (author == null || guildId == null) return;
 
 	return (
 		<TagComponent
