@@ -29,13 +29,15 @@
 		},
 		"rounded": {
 			"type": "boolean",
-			"displayName": "Rounded corners on text tags",
+			"displayName": "Rounded tags",
+			"description": "This will only show for the Text style.",
 			"default": false,
 			"advice": "none"
 		},
 		"capitalizeText": {
 			"type": "boolean",
-			"displayName": "Capitalize text on tags",
+			"displayName": "Capitalize labels",
+			"description": "This will only show for the Text style.",
 			"default": true,
 			"advice": "none"
 		},

@@ -9,11 +9,19 @@ export function shouldShowCrown() {
 	return !tags.some((tag) => tag.permissions.includes("OWNER"));
 }
 
-export function repliedMessageTag({ referencedMessage, channel }) {
+export function repliedMessageTag({ referencedMessage, channel, repliedAuthor }) {
 	const author = referencedMessage?.message?.author;
 	const guildId = channel?.guild_id;
 
 	if (author === undefined || guildId === undefined) return;
 
-	return <TagComponent guild={GuildStore.getGuild(guildId)} user={author} location="chat" compact={true} />;
+	return (
+		<TagComponent
+			guild={GuildStore.getGuild(guildId)}
+			user={author}
+			location="chat"
+			compact={true}
+			roleColor={repliedAuthor?.colorString}
+		/>
+	);
 }

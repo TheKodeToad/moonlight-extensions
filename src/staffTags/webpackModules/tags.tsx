@@ -21,15 +21,19 @@ const botTagClasses = spacepack.findByCode("px:", "rem:", "botTagOP:")[0].export
 const memberListClasses = spacepack.findByCode("botTag:", "ownerIcon:")[0].exports;
 const chatClasses = spacepack.findByCode("botTagCompact:", "botTagCozy:")[0].exports;
 
+type Location = "chat" | "memberList";
+
 export function TagComponent({
 	user,
+	roleColor,
 	guild,
 	location,
 	compact
 }: {
 	user;
+	roleColor?: string;
 	guild;
-	location: "chat" | "memberList";
+	location: Location;
 	compact?: boolean;
 }) {
 	const permissionsSet = getPermissionsSet(user, guild);
@@ -50,22 +54,32 @@ export function TagComponent({
 
 	switch (style) {
 		case "text":
-			return <TextTagComponent tag={tag} location={location} compact={compact} className={className} />;
+			return (
+				<TextTagComponent
+					tag={tag}
+					roleColor={roleColor}
+					location={location}
+					compact={compact}
+					className={className}
+				/>
+			);
 		case "icon":
-			return <IconTagComponent tag={tag} className={className} />;
+			return <IconTagComponent tag={tag} roleColor={roleColor} location={location} className={className} />;
 	}
 }
 
 function TextTagComponent({
 	tag,
-	className,
+	roleColor,
 	location,
-	compact
+	compact,
+	className
 }: {
 	tag: Tag;
-	className: string;
-	location: "chat" | "memberList";
+	roleColor?: string;
+	location: Location;
 	compact?: boolean;
+	className: string;
 }) {
 	let classNamePrefix: string;
 
@@ -78,28 +92,44 @@ function TextTagComponent({
 			break;
 	}
 
+	let background = "#" + tag.color.toString(16);
+
+	if (tag.useRoleColor) background = roleColor ?? background;
+
 	return (
-		<span className={classNamePrefix + " " + className} style={{ background: "#" + tag.color.toString(16) }}>
+		<span className={classNamePrefix + " " + className} style={{ background }}>
 			<span className={botTagClasses.botText}>{tag.label}</span>
 		</span>
 	);
 }
 
-function IconTagComponent({ tag, className }: { tag: Tag; className: string }) {
+function IconTagComponent({
+	tag,
+	roleColor,
+	location,
+	className
+}: {
+	tag: Tag;
+	roleColor?: string;
+	location: Location;
+	className: string;
+}) {
 	const Icon = Components[Icons[tag.icon]?.discordName?.concat("Icon")];
 
 	if (Icon === undefined) return undefined;
 
 	return (
-		<Tooltip text={tag.label}>
-			{(props) => (
-				<Icon
-					className={memberListClasses.icon + " " + className}
-					color={"#" + tag.color.toString(16)}
-					{...props}
-				/>
-			)}
-		</Tooltip>
+		<span style={{ color: location === "chat" ? "var(--header-primary)" : undefined }}>
+			<Tooltip text={tag.label}>
+				{(props) => (
+					<Icon
+						className={memberListClasses.icon + " " + className}
+						color={tag.useRoleColor ? (roleColor ?? "currentColor") : "#" + tag.color.toString(16)}
+						{...props}
+					/>
+				)}
+			</Tooltip>
+		</span>
 	);
 }
 
@@ -122,29 +152,46 @@ function getPermissionsSet(user, guild) {
 
 memberList.addDecorator(
 	"staffTags-tag",
-	({ user, channel }) =>
+	({ user, channel, colorString }) =>
 		channel?.guild_id && (
-			<TagComponent user={user} guild={GuildStore.getGuild(channel.guild_id)} location="memberList" />
+			<TagComponent
+				user={user}
+				guild={GuildStore.getGuild(channel.guild_id)}
+				location="memberList"
+				roleColor={colorString}
+			/>
 		),
 	"bot-tag"
 );
 message.addToUsername(
 	"staffTags-tag-cozy",
-	({ message, guildId, compact }) =>
+	({ message, guildId, compact, author }) =>
 		!compact &&
 		message?.author &&
 		guildId && (
-			<TagComponent user={message.author} guild={GuildStore.getGuild(guildId)} location="chat" compact={false} />
+			<TagComponent
+				user={message.author}
+				roleColor={author?.colorString}
+				guild={GuildStore.getGuild(guildId)}
+				location="chat"
+				compact={false}
+			/>
 		),
 	"username"
 );
 message.addToUsername(
 	"staffTags-tag-compact",
-	({ message, guildId, compact }) =>
+	({ message, guildId, compact, author }) =>
 		compact &&
 		message?.author &&
 		guildId && (
-			<TagComponent user={message.author} guild={GuildStore.getGuild(guildId)} location="chat" compact={true} />
+			<TagComponent
+				user={message.author}
+				roleColor={author?.colorString}
+				guild={GuildStore.getGuild(guildId)}
+				location="chat"
+				compact={true}
+			/>
 		),
 	"username",
 	true

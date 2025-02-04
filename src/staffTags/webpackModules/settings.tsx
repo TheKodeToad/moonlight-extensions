@@ -4,6 +4,7 @@ import Components, {
 	Card,
 	ChevronLargeDownIcon,
 	ChevronLargeUpIcon,
+	FormSwitch,
 	FormText,
 	FormTitle,
 	SearchableSelect,
@@ -66,6 +67,7 @@ export default function TagsSettingsComponent({
 						tags.push({
 							label: "",
 							icon: "shield",
+							useRoleColor: false,
 							color: BLURPLE,
 							permissions: []
 						});
@@ -130,8 +132,18 @@ function TagSettingsComponent({
 				<PanelButton icon={TrashIcon} tooltipText="Remove Tag" onClick={onDelete} />
 			</Flex>
 			<div style={{ padding: 16 }}>
-				<FormTitle>Color</FormTitle>
-				<div className={marginBottom20}>
+				<FormSwitch
+					value={tag.useRoleColor}
+					onChange={(value) => {
+						tag.useRoleColor = value;
+						onChange();
+					}}
+					hideBorder={true}
+				>
+					Use role color
+				</FormSwitch>
+				<FormTitle>{tag.useRoleColor ? "Fallback Color" : "Color"}</FormTitle>
+				<div className={marginBottom8}>
 					<ColorSwatch
 						color={tag.color}
 						onChange={(value) => {
@@ -140,16 +152,30 @@ function TagSettingsComponent({
 						}}
 					/>
 				</div>
+				<FormText
+					// @ts-expect-error Import not available
+					type={"description"}
+					style={{ display: tag.useRoleColor ? undefined : "none" }}
+					className={marginBottom20}
+				>
+					This will only be used for the Text style when there is no role color.
+				</FormText>
 				<FormTitle>Icon</FormTitle>
-				<FormText className={marginBottom8}>This will only show for the “Icon” style.</FormText>
 				<TagIconSelect
 					value={tag.icon}
 					setValue={(value) => {
 						tag.icon = value;
 						onChange();
 					}}
-					className={marginBottom20}
+					className={marginBottom8}
 				/>
+				<FormText
+					// @ts-expect-error Import not available
+					type={"description"}
+					className={marginBottom20}
+				>
+					This will only show for the Icon style.
+				</FormText>
 				<FormTitle>Permissions</FormTitle>
 				<TagPermissionsSelect
 					value={tag.permissions}
