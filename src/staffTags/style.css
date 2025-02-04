@@ -9,15 +9,14 @@
 .staffTags-tag-icon.staffTags-tag-chat {
 	/* Don't ask */
 	position: relative;
+	margin-left: 0.25rem;
 	top: 0.0625rem;
 	width: 0.875rem;
 	height: 0.875rem;
 }
 
-.staffTags-tag-icon.staffTags-tag-chat:not(.staffTags-tag-compact) {
-	margin-left: 0.25rem;
-}
 .staffTags-tag-icon.staffTags-tag-chat.staffTags-tag-compact {
+	margin-left: 0;
 	margin-right: 0.25rem;
 }
 
@@ -28,5 +27,6 @@
 }
 
 .staffTags-tag-text.staffTags-tag-rounded {
-	border-radius: 9999px !important; /* lol i am so good at css */
+	border-radius: 9999px !important;
+	/* lol i am so good at css */
 }
