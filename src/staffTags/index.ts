@@ -30,7 +30,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "common", id: "stores" },
 			{ ext: "moonbase", id: "moonbase" },
 			{ ext: "spacepack", id: "spacepack" },
-			{ ext: "staffTags", id: "constants" },
+			{ ext: "staffTags", id: "common" },
 			"getGuildPermissionSpecMap:",
 			'.swatch,"aria-label"'
 		],
@@ -39,18 +39,25 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 	tags: {
 		dependencies: [
 			{ id: "react" },
+			{ id: "discord/components/common/index" },
+			{ id: "discord/Constants" },
+			{ ext: "common", id: "ErrorBoundary" },
+			{ ext: "common", id: "stores" },
 			{ ext: "componentEditor", id: "memberList" },
-			{ ext: "staffTags", id: "constants" },
+			{ ext: "staffTags", id: "common" },
 			"computeLurkerPermissionsAllowList())&&void 0"
 		],
 		entrypoint: true // register the decorators
 	},
-	constants: {},
+	common: {
+		dependencies: [{ id: "discord/components/common/index" }]
+	},
 	hooks: {
 		dependencies: [
 			{ id: "react" },
-			{ ext: "staffTags", id: "constants" },
+			{ ext: "common", id: "ErrorBoundary" },
 			{ ext: "common", id: "stores" },
+			{ ext: "staffTags", id: "common" },
 			{ ext: "staffTags", id: "tags" }
 		]
 	}

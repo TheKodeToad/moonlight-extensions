@@ -1,13 +1,13 @@
+import ErrorBoundary from "@moonlight-mod/wp/common_ErrorBoundary";
 import { GuildStore } from "@moonlight-mod/wp/common_stores";
 import memberList from "@moonlight-mod/wp/componentEditor_memberList";
 import message from "@moonlight-mod/wp/componentEditor_messages";
-import Components, { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
+import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
-import { Icons } from "@moonlight-mod/wp/staffTags_constants";
+import { defaultConfig, iconComponent } from "@moonlight-mod/wp/staffTags_common";
 import { Tag } from "staffTags/types";
-import { defaultConfig } from "./constants";
 
 const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())&&void 0")[0].exports;
 const computePermissions = Object.values(PermissionUtils).find(
@@ -114,7 +114,7 @@ function IconTagComponent({
 	location: Location;
 	className: string;
 }) {
-	const Icon = Components[Icons[tag.icon]?.discordName?.concat("Icon")];
+	const Icon = iconComponent(tag.icon);
 
 	if (Icon === undefined) return undefined;
 
@@ -154,12 +154,14 @@ memberList.addDecorator(
 	"staffTags-tag",
 	({ user, channel, colorString }) =>
 		channel?.guild_id != null && (
-			<TagComponent
-				user={user}
-				guild={GuildStore.getGuild(channel.guild_id)}
-				location="memberList"
-				roleColor={colorString}
-			/>
+			<ErrorBoundary>
+				<TagComponent
+					user={user}
+					guild={GuildStore.getGuild(channel.guild_id)}
+					location="memberList"
+					roleColor={colorString}
+				/>
+			</ErrorBoundary>
 		),
 	"bot-tag"
 );
@@ -169,13 +171,15 @@ message.addToUsername(
 		!compact &&
 		message?.author != null &&
 		guildId != null && (
-			<TagComponent
-				user={message.author}
-				roleColor={author?.colorString}
-				guild={GuildStore.getGuild(guildId)}
-				location="chat"
-				compact={false}
-			/>
+			<ErrorBoundary>
+				<TagComponent
+					user={message.author}
+					roleColor={author?.colorString}
+					guild={GuildStore.getGuild(guildId)}
+					location="chat"
+					compact={false}
+				/>
+			</ErrorBoundary>
 		),
 	"username"
 );
@@ -185,13 +189,15 @@ message.addToUsername(
 		compact &&
 		message?.author != null &&
 		guildId != null && (
-			<TagComponent
-				user={message.author}
-				roleColor={author?.colorString}
-				guild={GuildStore.getGuild(guildId)}
-				location="chat"
-				compact={true}
-			/>
+			<ErrorBoundary>
+				<TagComponent
+					user={message.author}
+					roleColor={author?.colorString}
+					guild={GuildStore.getGuild(guildId)}
+					location="chat"
+					compact={true}
+				/>
+			</ErrorBoundary>
 		),
 	"username",
 	true

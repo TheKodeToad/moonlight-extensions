@@ -1,7 +1,7 @@
 /// <reference types="@moonlight-mod/types" />
 
-declare module "@moonlight-mod/wp/staffTags_constants" {
-	export * from "staffTags/webpackModules/constants";
+declare module "@moonlight-mod/wp/staffTags_common" {
+	export * from "staffTags/webpackModules/common";
 }
 
 declare module "@moonlight-mod/wp/staffTags_tags" {

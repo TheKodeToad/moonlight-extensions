@@ -1,3 +1,4 @@
+import Components from "@moonlight-mod/wp/discord/components/common/index";
 import { Tag } from "staffTags/types";
 
 export const BLURPLE = 0x5865f2;
@@ -8,11 +9,13 @@ export function defaultConfig(): Tag[] {
 			label: "Owner",
 			icon: "crown",
 			color: BLURPLE,
+			useRoleColor: false,
 			permissions: ["OWNER"]
 		},
 		{
 			label: "Admin",
 			color: BLURPLE,
+			useRoleColor: false,
 			permissions: ["ADMINISTRATOR"],
 			icon: "shield"
 		},
@@ -20,12 +23,14 @@ export function defaultConfig(): Tag[] {
 			label: "Manager",
 			icon: "wrench",
 			color: BLURPLE,
+			useRoleColor: false,
 			permissions: ["MANAGE_CHANNELS", "MANAGE_GUILD", "MANAGE_ROLES"]
 		},
 		{
 			label: "Mod",
 			icon: "hammer",
 			color: BLURPLE,
+			useRoleColor: false,
 			permissions: [
 				"KICK_MEMBERS",
 				"BAN_MEMBERS",
@@ -72,3 +77,11 @@ export interface Icon {
 }
 
 export const Icons: Record<keyof typeof _icons, Icon> = _icons;
+
+export function iconComponent(id: string): React.FunctionComponent<any> | undefined {
+	const icon = Icons[id];
+
+	if (icon === undefined) return;
+
+	return Components[`${icon.discordName}Icon`] ?? Components[`staffTags$${icon.discordName}Icon`];
+}

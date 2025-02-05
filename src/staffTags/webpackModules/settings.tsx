@@ -1,13 +1,13 @@
 import { CustomComponentProps } from "@moonlight-mod/types/coreExtensions/moonbase";
-import Components, {
+import {
 	Button,
 	Card,
-	ChevronLargeDownIcon,
-	ChevronLargeUpIcon,
 	FormSwitch,
 	FormText,
 	FormTitle,
 	SearchableSelect,
+	staffTags$ChevronLargeDownIcon,
+	staffTags$ChevronLargeUpIcon,
 	TextInput,
 	TrashIcon
 } from "@moonlight-mod/wp/discord/components/common/index";
@@ -19,7 +19,7 @@ import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import React, { useMemo } from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
-import { BLURPLE, defaultConfig, Icons } from "@moonlight-mod/wp/staffTags_constants";
+import { BLURPLE, defaultConfig, iconComponent, Icons } from "@moonlight-mod/wp/staffTags_common";
 import { Tag } from "staffTags/types";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
@@ -108,13 +108,13 @@ function TagSettingsComponent({
 		<Card>
 			<Flex direction={Flex.Direction.HORIZONTAL} style={{ gap: 8 }} className={cardHeader}>
 				<PanelButton
-					icon={ChevronLargeUpIcon}
+					icon={staffTags$ChevronLargeUpIcon}
 					tooltipText={"Move Up"}
 					disabled={!canMoveUp}
 					onClick={onMoveUp}
 				/>
 				<PanelButton
-					icon={ChevronLargeDownIcon}
+					icon={staffTags$ChevronLargeDownIcon}
 					tooltipText={"Move Down"}
 					disabled={!canMoveDown}
 					onClick={onMoveDown}
@@ -228,9 +228,9 @@ function TagIconSelect({
 			value={value}
 			onChange={setValue}
 			renderOptionPrefix={(option) => {
-				if (option === null) return undefined;
+				if (option == null) return undefined;
 
-				const Icon = Components[Icons[option.value]?.discordName?.concat("Icon")];
+				const Icon = iconComponent(option.value);
 
 				if (Icon === undefined) return undefined;
 
@@ -245,14 +245,14 @@ function TagIconSelect({
 function createPermissionOptions() {
 	const result: { label: string; value: any }[] = [{ label: "Server Owner", value: "OWNER" }];
 
-	const specMap = getGuildPermissionSpecMap({}); // HACK: Passing empty object seems to work, presumably this is just to change the result based on experiments?
+	const specMap = getGuildPermissionSpecMap?.({}); // HACK: Passing empty object seems to work, presumably this is just to change the result based on experiments?
 
 	for (const key in Permissions) {
 		// No point showing this
 		if (key === "USE_CLYDE_AI") continue;
 
 		const value = Permissions[key];
-		const spec = specMap[String(value)];
+		const spec = specMap?.[String(value)];
 		result.push({
 			label: spec?.title ?? key,
 			value: key

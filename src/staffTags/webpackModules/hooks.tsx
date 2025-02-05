@@ -1,6 +1,7 @@
+import ErrorBoundary from "@moonlight-mod/wp/common_ErrorBoundary";
 import { GuildStore } from "@moonlight-mod/wp/common_stores";
 import React from "@moonlight-mod/wp/react";
-import { defaultConfig } from "@moonlight-mod/wp/staffTags_constants";
+import { defaultConfig } from "@moonlight-mod/wp/staffTags_common";
 import { TagComponent } from "@moonlight-mod/wp/staffTags_tags";
 import { Tag } from "staffTags/types";
 
@@ -16,12 +17,14 @@ export function repliedMessageTag({ referencedMessage, channel, repliedAuthor })
 	if (author == null || guildId == null) return;
 
 	return (
-		<TagComponent
-			guild={GuildStore.getGuild(guildId)}
-			user={author}
-			location="chat"
-			compact={true}
-			roleColor={repliedAuthor?.colorString}
-		/>
+		<ErrorBoundary>
+			<TagComponent
+				guild={GuildStore.getGuild(guildId)}
+				user={author}
+				location="chat"
+				compact={true}
+				roleColor={repliedAuthor?.colorString}
+			/>
+		</ErrorBoundary>
 	);
 }
