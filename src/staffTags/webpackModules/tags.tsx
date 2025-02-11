@@ -17,9 +17,9 @@ const computePermissions = Object.values(PermissionUtils).find(
 		!prop.toString().includes("forceRoles")
 ) as (options: object) => bigint;
 
-const botTagClasses = spacepack.findByCode("px:", "rem:", "botTagOP:")[0].exports;
-const memberListClasses = spacepack.findByCode("botTag:", "ownerIcon:")[0].exports;
-const chatClasses = spacepack.findByCode("botTagCompact:", "botTagCozy:")[0].exports;
+const botTagClasses = spacepack.findByCode('"botTagVerified_')[0].exports;
+const memberListClasses = spacepack.findByCode('"memberInner_')[0].exports;
+const chatClasses = spacepack.findByCode('"botTagCompact_')[0].exports;
 
 type Location = "chat" | "memberList";
 

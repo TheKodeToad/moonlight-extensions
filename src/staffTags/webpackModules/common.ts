@@ -2,7 +2,7 @@ import Components from "@moonlight-mod/wp/discord/components/common/index";
 import { Tag } from "staffTags/types";
 
 export const BLURPLE = 0x5865f2;
-// not technically a constant sorry
+
 export function defaultConfig(): Tag[] {
 	return [
 		{
