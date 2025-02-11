@@ -150,6 +150,7 @@ function TagSettingsComponent({
 							tag.color = value;
 							onChange();
 						}}
+						showEyeDropper={true}
 					/>
 				</div>
 				<FormText
