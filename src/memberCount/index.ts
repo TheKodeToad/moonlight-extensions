@@ -5,7 +5,7 @@ export const patches: ExtensionWebExports["patches"] = [
 		find: '"GuildHeader"',
 		replace: {
 			match: /\(0,\i\.jsx\)\(\i\.\i,{variant:"text-md\/semibold",lineClamp:1,className:\i\.name,children:\i\.toString\(\)\}\)/,
-			replacement: "require('memberCount_components').wrapGuildNameComponent(arguments[0].guild,$&)"
+			replacement: "(require('memberCount_components').wrapGuildNameComponent(arguments[0].guild,$&))"
 		}
 	}
 ];
