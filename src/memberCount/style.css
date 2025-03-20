@@ -6,4 +6,5 @@
 
 .memberCount-guild-name-wrapper {
 	margin-right: auto;
+	overflow: hidden;
 }
