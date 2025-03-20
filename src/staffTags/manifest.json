@@ -1,12 +1,12 @@
 {
 	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
 	"id": "staffTags",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"apiLevel": 2,
 	"meta": {
 		"name": "Staff Tags",
 		"tagline": "Display tags next to staff usernames based on permissions.",
-		"changelog": "Fixed tag spacing. Add eye dropper to color picker.",
+		"changelog": "Fixed crown appearing alongside tag.",
 		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/staffTags",
 		"tags": ["qol", "chat"]

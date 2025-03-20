@@ -5,7 +5,7 @@ export const patches: ExtensionWebExports["patches"] = [
 	{
 		find: '"MemberListItem"',
 		replace: {
-			match: /\?\(0,\i\.jsx\)\(\i\.\i,{text:null!=\i\?\i:\i\.intl\.string\(\i\.\i\.pclUFB\)/,
+			match: /\?\(0,\i\.jsx\)\(\i\.\i,{text:null!=\i\?\i:\i\.\i\.\i\(\i\.\i\.pclUFB\)/,
 			replacement: '&&require("staffTags_hooks").shouldShowCrown()$&'
 		}
 	},
