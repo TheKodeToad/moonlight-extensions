@@ -45,7 +45,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "common", id: "stores" },
 			{ ext: "componentEditor", id: "memberList" },
 			{ ext: "staffTags", id: "common" },
-			"computeLurkerPermissionsAllowList())&&void 0",
+			"computeLurkerPermissionsAllowList())",
 			'"botTagVerified_',
 			'"memberInner_',
 			'"botTagCompact_'

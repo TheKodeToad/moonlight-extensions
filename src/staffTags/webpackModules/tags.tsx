@@ -9,7 +9,7 @@ import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { defaultConfig, iconComponent } from "@moonlight-mod/wp/staffTags_common";
 import { Tag } from "staffTags/types";
 
-const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())&&void 0")[0].exports;
+const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())")[0].exports;
 const computePermissions = Object.values(PermissionUtils).find(
 	(prop) =>
 		typeof prop === "function" &&

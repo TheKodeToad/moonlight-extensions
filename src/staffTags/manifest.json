@@ -6,7 +6,7 @@
 	"meta": {
 		"name": "Staff Tags",
 		"tagline": "Display tags next to staff usernames based on permissions.",
-		"changelog": "Fixed crown appearing alongside tag.",
+		"changelog": "Fixed crashing on latest Discord stable.",
 		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/staffTags",
 		"tags": ["qol", "chat"]
