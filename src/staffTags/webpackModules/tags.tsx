@@ -1,6 +1,5 @@
 import ErrorBoundary from "@moonlight-mod/wp/common_ErrorBoundary";
 import { GuildStore } from "@moonlight-mod/wp/common_stores";
-import memberList from "@moonlight-mod/wp/componentEditor_memberList";
 import message from "@moonlight-mod/wp/componentEditor_messages";
 import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
@@ -150,21 +149,6 @@ function getPermissionsSet(user, guild) {
 	return result;
 }
 
-memberList.addDecorator(
-	"staffTags-tag",
-	({ user, channel, colorString }) =>
-		channel?.guild_id != null && (
-			<ErrorBoundary>
-				<TagComponent
-					user={user}
-					guild={GuildStore.getGuild(channel.guild_id)}
-					location="memberList"
-					roleColor={colorString}
-				/>
-			</ErrorBoundary>
-		),
-	"bot-tag"
-);
 message.addToUsername(
 	"staffTags-tag-cozy",
 	({ message, guildId, compact, author }) =>

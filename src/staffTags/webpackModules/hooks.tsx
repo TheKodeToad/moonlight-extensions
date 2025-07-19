@@ -10,7 +10,7 @@ export function shouldShowCrown() {
 	return !tags.some((tag) => tag.permissions.includes("OWNER"));
 }
 
-export function repliedMessageTag({ referencedMessage, channel, repliedAuthor }) {
+function RepliedMessageTag({ referencedMessage, channel, repliedAuthor }) {
 	const author = referencedMessage?.message?.author;
 	const guildId = channel?.guild_id;
 
@@ -27,4 +27,27 @@ export function repliedMessageTag({ referencedMessage, channel, repliedAuthor })
 			/>
 		</ErrorBoundary>
 	);
+}
+
+export function repliedMessageTag(props) {
+	return <RepliedMessageTag {...props} />;
+}
+
+function MemberListTag({ user, channel, colorString }) {
+	return (
+		channel?.guild_id != null && (
+			<ErrorBoundary>
+				<TagComponent
+					user={user}
+					guild={GuildStore.getGuild(channel.guild_id)}
+					location="memberList"
+					roleColor={colorString}
+				/>
+			</ErrorBoundary>
+		)
+	);
+}
+
+export function memberListTag(props) {
+	return <MemberListTag {...props} />;
 }

@@ -15,6 +15,13 @@ export const patches: ExtensionWebExports["patches"] = [
 			match: /\.onClickReply,onMouseEnter:\i,onMouseLeave:\i}\),\i/,
 			replacement: '$&,require("staffTags_hooks").repliedMessageTag(arguments[0])'
 		}
+	},
+	{
+		find: ".lostPermission",
+		replace: {
+			match: /(?<=decorators:)\(0,\i\.jsx\)\(\i,\{.{10,200}?\}\)/,
+			replacement: '[($&),require("staffTags_hooks").memberListTag(arguments[0])]'
+		}
 	}
 ];
 
@@ -45,7 +52,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ id: "discord/Constants" },
 			{ ext: "common", id: "ErrorBoundary" },
 			{ ext: "common", id: "stores" },
-			{ ext: "componentEditor", id: "memberList" },
+			{ ext: "componentEditor", id: "messages" },
 			{ ext: "staffTags", id: "common" },
 			"computeLurkerPermissionsAllowList())",
 			'"botTagVerified_',
