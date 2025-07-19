@@ -1,6 +1,5 @@
 import { CustomComponentProps } from "@moonlight-mod/types/coreExtensions/moonbase";
 import {
-	Button,
 	Card,
 	FormSwitch,
 	FormText,
@@ -16,6 +15,7 @@ import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import { cardHeader } from "@moonlight-mod/wp/discord/modules/guild_settings/web/AppCard.css";
 import { marginBottom20, marginBottom8 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
+import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import React, { useMemo } from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";

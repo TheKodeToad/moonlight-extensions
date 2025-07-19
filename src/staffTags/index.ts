@@ -23,6 +23,8 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 		dependencies: [
 			{ id: "react" },
 			{ id: "discord/components/common/index" },
+			{ id: "discord/uikit/legacy/Button" },
+			{ id: "discord/uikit/Flex" },
 			{ id: "discord/styles/shared/Margins.css" },
 			{ id: "discord/components/common/PanelButton" },
 			{ id: "discord/modules/guild_settings/web/AppCard.css" },
