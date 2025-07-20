@@ -27,7 +27,7 @@ function PopoutJoinDates({ user, guild, withLabel }: { user; guild; withLabel: b
 
 	return (
 		<ErrorBoundary>
-			<ProfileSection heading={withLabel ? "Member Since" : undefined}>
+			<ProfileSection heading={withLabel ? "Created On" : undefined}>
 				<MemberSince userId={user?.id} guildId={guild?.id} betterProfiles$bare={!user.bot} />
 			</ProfileSection>
 		</ErrorBoundary>
