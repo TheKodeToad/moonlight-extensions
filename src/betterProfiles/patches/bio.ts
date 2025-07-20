@@ -10,27 +10,27 @@ export default [
 		find: "viewFullBioDisabled),onClick:",
 		replace: [
 			{
-				match: /,(\i)=\(\)=>\{(null==\i||\i\(\),\(0,\i\.openUserProfileModal)/,
+				match: /,(\i)=\(\)=>{(null==\i||\i\(\),\(0,\i\.openUserProfileModal)/,
 				replacement: `
-					, [expandedBio, setExpandedBio] = ${useState}(${shouldExpandBioByDefault}())
+					, [betterProfiles$expandedBio, betterProfiles$setExpandedBio] = ${useState}(${shouldExpandBioByDefault}())
 					, $1 = () => {
 						if (${shouldUseFullBioToggle}()) {
-							return setExpandedBio(x => !x);
+							return betterProfiles$setExpandedBio(x => !x);
 						}
 						$2
 				`
 			},
 			{
 				match: /\i\(\)\(\i\.descriptionClamp,\i&&\i\.maxBioHeight\)/,
-				replacement: "!expandedBio&&$&"
+				replacement: "!betterProfiles$expandedBio&&$&"
 			},
 			{
-				match: /\(0,\i\.jsx\)\(\i\.\i,\{look:\i\.\i\.Looks\.BLANK,size:\i\.\i\.Sizes\.NONE,className:\i\.viewFullBio/,
+				match: /\(0,\i\.jsx\)\(\i\.\i,{look:\i\.\i\.Looks\.BLANK,size:\i\.\i\.Sizes\.NONE,className:\i\.viewFullBio/,
 				replacement: `(${shouldUseFullBioToggle}()||!${shouldExpandBioByDefault}())&&$&`
 			},
 			{
 				match: /\i\.\i\.\i\(\i\.\i\.YDiPq6\)/,
-				replacement: `${getViewFullBioText}(expandedBio)||$&`
+				replacement: `${getViewFullBioText}(betterProfiles$expandedBio)||$&`
 			}
 		]
 	}

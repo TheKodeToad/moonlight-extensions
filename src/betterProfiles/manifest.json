@@ -32,6 +32,11 @@
 			"description": "Instead of defaulting to showing the server profile in the profile dialog, default to the main profile.",
 			"default": true,
 			"advice": "none"
+		},
+		"showJoinDates": {
+			"type": "boolean",
+			"displayName": "Show join dates in popout.",
+			"default": true
 		}
 	},
 	"dependencies": ["spacepack", "common"]
