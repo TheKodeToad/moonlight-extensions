@@ -12,6 +12,11 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 		dependencies: [{ ext: "common", id: "stores" }]
 	},
 	hooks_joinDates: {
-		dependencies: [{ ext: "spacepack", id: "spacepack" }, "uvGmCw),"]
+		dependencies: [
+			{ ext: "common", id: "ErrorBoundary" },
+			{ id: "react" },
+			{ ext: "spacepack", id: "spacepack" },
+			"uvGmCw),"
+		]
 	}
 };
