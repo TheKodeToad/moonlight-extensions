@@ -35,8 +35,9 @@
 		},
 		"showJoinDates": {
 			"type": "boolean",
-			"displayName": "Show join dates in popout.",
-			"default": true
+			"displayName": "Show join dates in popout",
+			"default": true,
+			"advice": "none"
 		}
 	},
 	"dependencies": ["spacepack", "common"]
