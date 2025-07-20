@@ -8,7 +8,7 @@ function inlineRequire(module: string): Record<string, string> {
 		{
 			get(_, prop) {
 				if (typeof prop === "symbol") {
-					throw new Error("Symbol access is not supported");
+					throw new Error("Symbol access is not supported for inlineRequire");
 				}
 
 				return `${base}[${JSON.stringify(prop)}]`;
@@ -25,14 +25,15 @@ export const patches: ExtensionWebExports["patches"] = [
 		find: "viewFullBioDisabled),onClick:",
 		replace: [
 			{
-				match: /(,\i=\(\)=>\{)(null==\i||\i\(\),\(0,\i\.openUserProfileModal)/,
+				match: /,(\i)=\(\)=>\{(null==\i||\i\(\),\(0,\i\.openUserProfileModal)/,
 				replacement: `
-				, [expandedBio, setExpandedBio] = ${useState}(${shouldExpandBioByDefault}())
-				$1
-				if (${shouldUseFullBioToggle}()) {
-					return setExpandedBio(x => !x);
-				}
-				$2`
+					, [expandedBio, setExpandedBio] = ${useState}(${shouldExpandBioByDefault}())
+					, $1 = () => {
+						if (${shouldUseFullBioToggle}()) {
+							return setExpandedBio(x => !x);
+						}
+						$2
+				`
 			},
 			{
 				match: /\i\(\)\(\i\.descriptionClamp,\i&&\i\.maxBioHeight\)/,
