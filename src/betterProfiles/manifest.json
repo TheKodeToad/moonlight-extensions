@@ -1,0 +1,38 @@
+{
+	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+	"id": "betterProfiles",
+	"version": "1.0.0",
+	"apiLevel": 2,
+	"meta": {
+		"name": "Better Profiles",
+		"tagline": "Enhance user profiles with extra customization.",
+		"description": "Adds the ability to toggle various extra features and tweaks for user profiles.",
+		"authors": ["TheKodeToad"],
+		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/memberCount",
+		"tags": ["qol"]
+	},
+	"settings": {
+		"fullBioToggle": {
+			"type": "boolean",
+			"displayName": "Expand/collapse full bio",
+			"description": "Toggle full display of the bio instead of just opening the full profile.",
+			"default": true,
+			"advice": "none"
+		},
+		"expandBioByDefault": {
+			"type": "boolean",
+			"displayName": "Expand full bio by default",
+			"description": "Default to full display of the bio.",
+			"default": false,
+			"advice": "none"
+		},
+		"defaultToMainProfile": {
+			"type": "boolean",
+			"displayName": "Default to main profile",
+			"description": "Instead of defaulting to showing the server profile in the profile dialog, default to the main profile.",
+			"default": true,
+			"advice": "none"
+		}
+	},
+	"dependencies": ["spacepack", "common"]
+}
