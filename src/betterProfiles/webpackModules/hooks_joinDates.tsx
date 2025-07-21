@@ -27,16 +27,18 @@ function PopoutJoinDates({ user, guild, withLabel }: { user; guild; withLabel: b
 	}
 
 	return (
-		<ErrorBoundary>
-			<ProfileSection heading={withLabel ? "Created On" : undefined}>
-				<MemberSince userId={user?.id} guildId={guild?.id} betterProfiles$bare={!user.bot} />
-			</ProfileSection>
-		</ErrorBoundary>
+		<ProfileSection heading={withLabel ? "Created On" : undefined}>
+			<MemberSince userId={user?.id} guildId={guild?.id} betterProfiles$bare={!user.bot} />
+		</ProfileSection>
 	);
 }
 
 export function popoutJoinDates(props) {
-	return <PopoutJoinDates {...props} />;
+	return (
+		<ErrorBoundary>
+			<PopoutJoinDates {...props} />
+		</ErrorBoundary>
+	);
 }
 
 export function getDiscordUserSinceText(props: MemberSinceProps) {
@@ -74,5 +76,9 @@ function DateTooltipWrapper({ time, text }: { time?: number; text: string }) {
 }
 
 export function dateTooltipWrapper(props) {
-	return <DateTooltipWrapper {...props} />;
+	return (
+		<ErrorBoundary>
+			<DateTooltipWrapper {...props} />
+		</ErrorBoundary>
+	);
 }
