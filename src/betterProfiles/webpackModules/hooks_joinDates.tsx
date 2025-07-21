@@ -59,7 +59,11 @@ const formatDate: (date: Date, format: string) => string = Object.values(
 	spacepack.findByCode('"Invalid date given to startOfDay"')[0].exports
 ).find((prop) => prop instanceof Function && prop.toString().includes(',":").concat(')) as any;
 
-function DateTooltipWrapper({ time, text }: { time: number; text: string }) {
+function DateTooltipWrapper({ time, text }: { time?: number; text: string }) {
+	if (time === undefined) {
+		return undefined;
+	}
+
 	if (!moonlight.getConfigOption("betterProfiles", "detailedJoinDates")) {
 		return text;
 	}

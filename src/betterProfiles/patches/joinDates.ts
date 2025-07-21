@@ -48,7 +48,7 @@ export default [
 				replacement: `${dateTooltipWrapper}({time:$1,text:$&})`
 			},
 			{
-				match: /\(0,\i\.\i\)\(null==\i\?void 0:(\i\.joinedAt),\i\)/,
+				match: /\(0,\i\.\i\)\((null==\i\?void 0:\i\.joinedAt),\i\)/,
 				replacement: `${dateTooltipWrapper}({time:$1,text:$&})`
 			}
 		]
