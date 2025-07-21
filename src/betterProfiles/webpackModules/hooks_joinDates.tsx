@@ -1,4 +1,5 @@
 import ErrorBoundary from "@moonlight-mod/wp/common_ErrorBoundary";
+import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
@@ -52,4 +53,22 @@ export function getGuildMemberSinceText(props: MemberSinceProps, name: string) {
 	} else {
 		return name;
 	}
+}
+
+const formatDate: (date: Date, format: string) => string = Object.values(
+	spacepack.findByCode('"Invalid date given to startOfDay"')[0].exports
+).find((prop) => prop instanceof Function && prop.toString().includes(',":").concat(')) as any;
+
+function DateTooltipWrapper({ time, text }: { time: number; text: string }) {
+	if (!moonlight.getConfigOption("betterProfiles", "detailedJoinDates")) {
+		return text;
+	}
+
+	const tooltip = formatDate(new Date(time), "LLLL");
+
+	return <Tooltip text={tooltip}>{(props) => <span {...props}>{text}</span>}</Tooltip>;
+}
+
+export function dateTooltipWrapper(props) {
+	return <DateTooltipWrapper {...props} />;
 }

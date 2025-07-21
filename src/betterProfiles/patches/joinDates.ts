@@ -1,7 +1,7 @@
 import { Patch } from "@moonlight-mod/types";
 import { inlineRequire } from "betterProfiles/util";
 
-const { popoutJoinDates, getDiscordUserSinceText, getGuildMemberSinceText } = inlineRequire(
+const { popoutJoinDates, getDiscordUserSinceText, getGuildMemberSinceText, dateTooltipWrapper } = inlineRequire(
 	"betterProfiles_hooks_joinDates"
 );
 
@@ -41,6 +41,15 @@ export default [
 			{
 				match: /\(0,\i\.jsx\)\("div",{className:\i\.divider}\)/,
 				replacement: "!betterProfiles$hideGuild&&$&"
+			},
+
+			{
+				match: /\(0,\i\.\i\)\((\i\.\i\.extractTimestamp\(\i\)),\i\)/,
+				replacement: `${dateTooltipWrapper}({time:$1,text:$&})`
+			},
+			{
+				match: /\(0,\i\.\i\)\(null==\i\?void 0:(\i\.joinedAt),\i\)/,
+				replacement: `${dateTooltipWrapper}({time:$1,text:$&})`
 			}
 		]
 	}

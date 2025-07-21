@@ -38,6 +38,12 @@
 			"displayName": "Show join dates in popout",
 			"default": true,
 			"advice": "none"
+		},
+		"detailedJoinDates": {
+			"type": "boolean",
+			"displayName": "Show detailed join dates on hover",
+			"default": true,
+			"advice": "none"
 		}
 	},
 	"dependencies": ["spacepack", "common"]
