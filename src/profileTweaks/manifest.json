@@ -1,15 +1,15 @@
 {
 	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
-	"id": "betterProfiles",
+	"id": "profileTweaks",
 	"version": "1.0.0",
 	"apiLevel": 2,
 	"meta": {
-		"name": "Better Profiles",
+		"name": "Profile Tweaks",
 		"tagline": "Enhance user profiles with extra customization.",
-		"description": "Adds the ability to toggle various extra features and tweaks for user profiles.",
+		"description": "A set of toggleable tweaks for profiles - each aiming to restore old functionality or improve UX for powerusers.",
 		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/memberCount",
-		"tags": ["qol"]
+		"tags": ["profiles", "qol"]
 	},
 	"settings": {
 		"fullBioToggle": {

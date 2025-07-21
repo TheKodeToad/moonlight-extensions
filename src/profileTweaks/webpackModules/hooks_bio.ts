@@ -1,9 +1,9 @@
 export function shouldUseFullBioToggle() {
-	return moonlight.getConfigOption<boolean>("betterProfiles", "fullBioToggle");
+	return moonlight.getConfigOption<boolean>("profileTweaks", "fullBioToggle");
 }
 
 export function shouldExpandBioByDefault() {
-	return moonlight.getConfigOption<boolean>("betterProfiles", "expandBioByDefault");
+	return moonlight.getConfigOption<boolean>("profileTweaks", "expandBioByDefault");
 }
 
 export function getViewFullBioText(expanded: boolean) {

@@ -1,9 +1,9 @@
 import { Patch } from "@moonlight-mod/types";
-import { inlineRequire } from "betterProfiles/util";
+import { inlineRequire } from "profileTweaks/util";
 
 const { useState } = inlineRequire("react");
 const { shouldUseFullBioToggle, shouldExpandBioByDefault, getViewFullBioText } =
-	inlineRequire("betterProfiles_hooks_bio");
+	inlineRequire("profileTweaks_hooks_bio");
 
 export default [
 	{
@@ -12,17 +12,17 @@ export default [
 			{
 				match: /,(\i)=\(\)=>{(null==\i||\i\(\),\(0,\i\.openUserProfileModal)/,
 				replacement: `
-					, [betterProfiles$expandedBio, betterProfiles$setExpandedBio] = ${useState}(${shouldExpandBioByDefault}())
+					, [profileTweaks$expandedBio, profileTweaks$setExpandedBio] = ${useState}(${shouldExpandBioByDefault}())
 					, $1 = () => {
 						if (${shouldUseFullBioToggle}()) {
-							return betterProfiles$setExpandedBio(x => !x);
+							return profileTweaks$setExpandedBio(x => !x);
 						}
 						$2
 				`
 			},
 			{
 				match: /\i\(\)\(\i\.descriptionClamp,\i&&\i\.maxBioHeight\)/,
-				replacement: "!betterProfiles$expandedBio&&$&"
+				replacement: "!profileTweaks$expandedBio&&$&"
 			},
 			{
 				match: /\(0,\i\.jsx\)\(\i\.\i,{look:\i\.\i\.Looks\.BLANK,size:\i\.\i\.Sizes\.NONE,className:\i\.viewFullBio/,
@@ -30,7 +30,7 @@ export default [
 			},
 			{
 				match: /\i\.\i\.\i\(\i\.\i\.YDiPq6\)/,
-				replacement: `${getViewFullBioText}(betterProfiles$expandedBio)||$&`
+				replacement: `${getViewFullBioText}(profileTweaks$expandedBio)||$&`
 			}
 		]
 	}

@@ -1,7 +1,7 @@
 import { Patch } from "@moonlight-mod/types";
-import { inlineRequire } from "betterProfiles/util";
+import { inlineRequire } from "profileTweaks/util";
 
-const { patchOpenUserProfileModalProps } = inlineRequire("betterProfiles_hooks_mainProfile");
+const { patchOpenUserProfileModalProps } = inlineRequire("profileTweaks_hooks_mainProfile");
 
 export default [
 	{
@@ -16,7 +16,7 @@ export default [
 		// allow the View Per-server profile button to function
 		replace: {
 			match: /showGuildProfile:!0/g,
-			replacement: "$&,betterProfiles$respectGuildProfile:true"
+			replacement: "$&,profileTweaks$respectGuildProfile:true"
 		}
 	},
 	{
@@ -24,7 +24,7 @@ export default [
 		// allow View Full Bio to view the per server bio (if fullBioToggle is disabled)
 		replace: {
 			match: /openUserProfileModal\)\(\i\(\i\(\{\},\i\),\{/,
-			replacement: "$&betterProfiles$respectGuildProfile:true,"
+			replacement: "$&profileTweaks$respectGuildProfile:true,"
 		}
 	}
 ] satisfies Patch[];

@@ -8,7 +8,7 @@ const MemberSince: React.FC<MemberSinceProps> = spacepack.findByCode("uvGmCw),")
 interface MemberSinceProps {
 	userId: string;
 	guildId?: string;
-	betterProfiles$bare?: boolean;
+	profileTweaks$bare?: boolean;
 }
 
 const ProfileSection: React.FC<ProfileSectionProps> = spacepack.findByCode(
@@ -22,13 +22,13 @@ interface ProfileSectionProps {
 }
 
 function PopoutJoinDates({ user, guild, withLabel }: { user; guild; withLabel: boolean }) {
-	if (!moonlight.getConfigOption("betterProfiles", "showJoinDates")) {
+	if (!moonlight.getConfigOption("profileTweaks", "showJoinDates")) {
 		return undefined;
 	}
 
 	return (
 		<ProfileSection heading={withLabel ? "Created On" : undefined}>
-			<MemberSince userId={user?.id} guildId={guild?.id} betterProfiles$bare={!user.bot} />
+			<MemberSince userId={user?.id} guildId={guild?.id} profileTweaks$bare={!user.bot} />
 		</ProfileSection>
 	);
 }
@@ -42,7 +42,7 @@ export function popoutJoinDates(props) {
 }
 
 export function getDiscordUserSinceText(props: MemberSinceProps) {
-	if (props.betterProfiles$bare) {
+	if (props.profileTweaks$bare) {
 		return "Discord Member Since";
 	} else {
 		return undefined;
@@ -50,7 +50,7 @@ export function getDiscordUserSinceText(props: MemberSinceProps) {
 }
 
 export function getGuildMemberSinceText(props: MemberSinceProps, name: string) {
-	if (props.betterProfiles$bare) {
+	if (props.profileTweaks$bare) {
 		return "Joined " + name;
 	} else {
 		return name;
@@ -66,7 +66,7 @@ function DateTooltipWrapper({ time, text }: { time?: number; text: string }) {
 		return undefined;
 	}
 
-	if (!moonlight.getConfigOption("betterProfiles", "detailedJoinDates")) {
+	if (!moonlight.getConfigOption("profileTweaks", "detailedJoinDates")) {
 		return text;
 	}
 
