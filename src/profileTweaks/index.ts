@@ -16,7 +16,9 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "common", id: "ErrorBoundary" },
 			{ id: "react" },
 			{ ext: "spacepack", id: "spacepack" },
-			"uvGmCw),"
+			"uvGmCw),",
+			'="header-secondary"}=',
+			'"Invalid date given to startOfDay"'
 		]
 	}
 };

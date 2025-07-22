@@ -11,10 +11,7 @@ interface MemberSinceProps {
 	profileTweaks$bare?: boolean;
 }
 
-const ProfileSection: React.FC<ProfileSectionProps> = spacepack.findByCode(
-	'?"auto":"smooth"',
-	'="header-secondary"}='
-)[0].exports.Z;
+const ProfileSection: React.FC<ProfileSectionProps> = spacepack.findByCode('="header-secondary"}=')[0].exports.Z;
 
 interface ProfileSectionProps {
 	heading?: string;
