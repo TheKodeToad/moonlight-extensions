@@ -1,9 +1,8 @@
 import { Patch } from "@moonlight-mod/types";
 import { inlineRequire } from "profileTweaks/util";
 
-const { popoutJoinDates, getDiscordUserSinceText, getGuildMemberSinceText, dateTooltipWrapper } = inlineRequire(
-	"profileTweaks_hooks_joinDates"
-);
+const { popoutJoinDates, getDiscordUserSinceText, getGuildMemberSinceText, dateTooltipWrapper } =
+	inlineRequire("profileTweaks_joinDates");
 
 export default [
 	{

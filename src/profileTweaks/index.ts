@@ -7,11 +7,11 @@ export const patches: ExtensionWebExports["patches"] = [...bioPatches, ...mainPr
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
-	hooks_bio: {},
-	hooks_mainProfile: {
+	bio: {},
+	mainProfile: {
 		dependencies: [{ ext: "common", id: "stores" }]
 	},
-	hooks_joinDates: {
+	joinDates: {
 		dependencies: [
 			{ ext: "common", id: "ErrorBoundary" },
 			{ id: "react" },

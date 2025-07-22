@@ -1,7 +1,7 @@
 import { Patch } from "@moonlight-mod/types";
 import { inlineRequire } from "profileTweaks/util";
 
-const { patchOpenUserProfileModalProps } = inlineRequire("profileTweaks_hooks_mainProfile");
+const { patchOpenUserProfileModalProps } = inlineRequire("profileTweaks_mainProfile");
 
 export default [
 	{

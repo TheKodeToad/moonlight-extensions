@@ -2,8 +2,7 @@ import { Patch } from "@moonlight-mod/types";
 import { inlineRequire } from "profileTweaks/util";
 
 const { useState } = inlineRequire("react");
-const { shouldUseFullBioToggle, shouldExpandBioByDefault, getViewFullBioText } =
-	inlineRequire("profileTweaks_hooks_bio");
+const { shouldUseFullBioToggle, shouldExpandBioByDefault, getViewFullBioText } = inlineRequire("profileTweaks_bio");
 
 export default [
 	{
