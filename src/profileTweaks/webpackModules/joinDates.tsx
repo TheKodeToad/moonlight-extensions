@@ -3,7 +3,7 @@ import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
-const MemberSince: React.FC<MemberSinceProps> = spacepack.findByCode("uvGmCw),")[0].exports.Z;
+const MemberSince: React.FC<MemberSinceProps> = spacepack.findByCode(".memberSinceWrapper,children:[(0,")[0].exports.Z;
 
 interface MemberSinceProps {
 	userId: string;
