@@ -23,7 +23,7 @@ export default [
 		find: "uvGmCw),",
 		replace: [
 			{
-				match: /(?<=\.joinedAt,v\);)return (null==\i\|\|null==\i)\?/,
+				match: /(?<=\.joinedAt,\i\);)return (null==\i\|\|null==\i)\?/,
 				replacement: `
 					let profileTweaks$hideGuild = $1;
 					return profileTweaks$hideGuild && !arguments[0].profileTweaks$bare ?

@@ -3,13 +3,6 @@ import "./mappings";
 
 export const patches: ExtensionWebExports["patches"] = [
 	{
-		find: '"MemberListItem"',
-		replace: {
-			match: /\?\(0,\i\.jsx\)\(\i\.\i,{text:null!=\i\?\i:\i\.\i\.\i\(\i\.\i\.pclUFB\)/,
-			replacement: '&&require("staffTags_hooks").shouldShowCrown()$&'
-		}
-	},
-	{
 		find: 'location:"RepliedMessage"',
 		replace: {
 			match: /\.onClickReply,onMouseEnter:\i,onMouseLeave:\i}\),\i/,
@@ -18,10 +11,16 @@ export const patches: ExtensionWebExports["patches"] = [
 	},
 	{
 		find: ".lostPermission",
-		replace: {
-			match: /(?<=decorators:)\(0,\i\.jsx\)\(\i,\{.{10,200}?\}\)/,
-			replacement: '[($&),require("staffTags_hooks").memberListTag(arguments[0])]'
-		}
+		replace: [
+			{
+				match: /(?<=decorators:)\(0,\i\.jsx\)\(\i,\{.{10,200}?\}\)/,
+				replacement: '[($&),require("staffTags_hooks").memberListTag(arguments[0])]'
+			},
+			{
+				match: /(?<=ownerTooltipText:\i\}=\i;return )null!=\i/,
+				replacement: 'require("staffTags_hooks").shouldShowCrown()&&$&'
+			}
+		]
 	}
 ];
 
