@@ -18,7 +18,7 @@ moonlight.moonmap.addExport("discord/components/common/index", "staffTags$Wrench
 });
 moonlight.moonmap.addExport("discord/components/common/index", "staffTags$ShieldIcon", {
 	type: ModuleExportType.Function,
-	find: "M4.27 5.22A2.66 2.66 0 0 0 3 7"
+	find: "M17.05 8.76a4.7 4.7 0 0"
 });
 moonlight.moonmap.addExport("discord/components/common/index", "staffTags$CrownIcon", {
 	type: ModuleExportType.Function,

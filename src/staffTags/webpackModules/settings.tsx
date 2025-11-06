@@ -152,6 +152,7 @@ function TagSettingsComponent({
 					}}
 				/>
 				<FormItem title={tag.useRoleColor ? "Fallback Color" : "Color"} className={marginTop20}>
+					<span></span>
 					<ColorSwatch
 						color={tag.color}
 						onChange={(value) => {
