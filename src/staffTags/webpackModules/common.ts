@@ -53,6 +53,10 @@ const _icons = {
 		discordName: "Wrench",
 		displayName: "Wrench"
 	},
+	gear: {
+		discordName: "Gear",
+		displayName: "Gear",
+	},
 	shield: {
 		discordName: "Shield",
 		displayName: "Shield"
