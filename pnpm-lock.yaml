@@ -22,19 +22,19 @@ importers:
         specifier: github:moonlight-mod/eslint-config
         version: https://codeload.github.com/moonlight-mod/eslint-config/tar.gz/e262ac24e1a0955a9b3e0d66da247a0a8c0446c9(eslint@9.31.0)(prettier@3.6.2)(typescript@5.8.3)
       esbuild:
-        specifier: ~0.19.12
+        specifier: ^0.19.12
         version: 0.19.12
       esbuild-copy-static-files:
         specifier: ^0.1.0
         version: 0.1.0
       eslint:
-        specifier: ~9.31.0
+        specifier: ^9.31.0
         version: 9.31.0
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
       typescript:
-        specifier: ~5.8.3
+        specifier: ^5.8.3
         version: 5.8.3
 
 packages:
