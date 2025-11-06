@@ -31,6 +31,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ id: "discord/components/common/index" },
 			{ id: "discord/uikit/legacy/Button" },
 			{ id: "discord/uikit/Flex" },
+			{ id: "discord/uikit/TextInput" },
 			{ id: "discord/styles/shared/Margins.css" },
 			{ id: "discord/components/common/PanelButton" },
 			{ id: "discord/modules/guild_settings/web/AppCard.css" },
@@ -40,7 +41,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "spacepack", id: "spacepack" },
 			{ ext: "staffTags", id: "common" },
 			"getGuildPermissionSpecMap:",
-			'.swatch,"aria-label"'
+			'.swatch,"aria-label"',
 		],
 		entrypoint: true // register the settings component
 	},

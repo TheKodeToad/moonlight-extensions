@@ -1,20 +1,20 @@
 import { CustomComponentProps } from "@moonlight-mod/types/coreExtensions/moonbase";
 import {
+	default as componentsCommon,
 	Card,
 	FormSwitch,
+	FormItem,
 	FormText,
-	FormTitle,
-	SearchableSelect,
 	staffTags$ChevronLargeDownIcon,
 	staffTags$ChevronLargeUpIcon,
-	TextInput,
 	TrashIcon
 } from "@moonlight-mod/wp/discord/components/common/index";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import { cardHeader } from "@moonlight-mod/wp/discord/modules/guild_settings/web/AppCard.css";
-import { marginBottom20, marginBottom8 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
+import { marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
 import Flex from "@moonlight-mod/wp/discord/uikit/Flex";
+import TextInput from "@moonlight-mod/wp/discord/uikit/TextInput";
 import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import React, { useMemo } from "@moonlight-mod/wp/react";
@@ -24,7 +24,19 @@ import { Tag } from "staffTags/types";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
 const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode('.swatch,"aria-label"')[0].exports.Z;
+const SearchableSelect: React.FunctionComponent<any> = Object.values(componentsCommon).find((prop) => prop instanceof Function && prop.toString().includes("SearchableSelect")) as any;
 
+console.log({
+	Card,
+	FormSwitch,
+	FormItem,
+	FormText,
+	SearchableSelect,
+	staffTags$ChevronLargeDownIcon,
+	staffTags$ChevronLargeUpIcon,
+	TextInput,
+	TrashIcon
+});
 export default function TagsSettingsComponent({
 	value: tags = defaultConfig(),
 	setValue
@@ -32,8 +44,7 @@ export default function TagsSettingsComponent({
 	const onChange = () => setValue(tags);
 
 	return (
-		<div>
-			<FormTitle>Tags</FormTitle>
+		<FormItem title="Tags" className={marginTop20}>
 			<Flex direction={Flex.Direction.VERTICAL} style={{ gap: 16 }} className={marginBottom8}>
 				{tags.map((tag, i) => (
 					<TagSettingsComponent
@@ -81,7 +92,7 @@ export default function TagsSettingsComponent({
 					Restore Defaults
 				</Button>
 			</Flex>
-		</div>
+		</FormItem>
 	);
 }
 
@@ -133,17 +144,14 @@ function TagSettingsComponent({
 			</Flex>
 			<div style={{ padding: 16 }}>
 				<FormSwitch
-					value={tag.useRoleColor}
+					label="Use role color"
+					checked={tag.useRoleColor}
 					onChange={(value) => {
 						tag.useRoleColor = value;
 						onChange();
 					}}
-					hideBorder={true}
-				>
-					Use role color
-				</FormSwitch>
-				<FormTitle>{tag.useRoleColor ? "Fallback Color" : "Color"}</FormTitle>
-				<div className={marginBottom8}>
+				/>
+				<FormItem title={tag.useRoleColor ? "Fallback Color" : "Color"} className={marginTop20}>
 					<ColorSwatch
 						color={tag.color}
 						onChange={(value) => {
@@ -152,40 +160,39 @@ function TagSettingsComponent({
 						}}
 						showEyeDropper={true}
 					/>
-				</div>
+				</FormItem>
 				<FormText
 					// @ts-expect-error Import not available
 					type={"description"}
 					style={{ display: tag.useRoleColor ? undefined : "none" }}
-					className={marginBottom20}
 				>
 					This will only be used for the Text style when there is no role color.
 				</FormText>
-				<FormTitle>Icon</FormTitle>
-				<TagIconSelect
-					value={tag.icon}
-					setValue={(value) => {
-						tag.icon = value;
-						onChange();
-					}}
-					className={marginBottom8}
-				/>
+				<FormItem title="Tags" className={marginTop20}>
+					<TagIconSelect
+						value={tag.icon}
+						setValue={(value) => {
+							tag.icon = value;
+							onChange();
+						}}
+						className={marginBottom8}
+					/>
+				</FormItem>
 				<FormText
 					// @ts-expect-error Import not available
 					type={"description"}
-					className={marginBottom20}
 				>
 					This will only show for the Icon style.
 				</FormText>
-				<FormTitle>Permissions</FormTitle>
-				<TagPermissionsSelect
-					value={tag.permissions}
-					setValue={(value) => {
-						tag.permissions = value;
-						onChange();
-					}}
-					className={marginBottom20}
-				/>
+				<FormItem title="Permissions" className={marginTop20}>
+					<TagPermissionsSelect
+						value={tag.permissions}
+						setValue={(value) => {
+							tag.permissions = value;
+							onChange();
+						}}
+					/>
+				</FormItem>
 			</div>
 		</Card>
 	);
@@ -194,11 +201,9 @@ function TagSettingsComponent({
 function TagPermissionsSelect({
 	value,
 	setValue,
-	className
 }: {
 	value: Tag["permissions"];
 	setValue: (value: Tag["permissions"]) => void;
-	className: string;
 }) {
 	const permissionOptions = useMemo(() => createPermissionOptions(), []);
 
@@ -209,7 +214,6 @@ function TagPermissionsSelect({
 			onChange={setValue}
 			multi={true}
 			placeholder="Select permissions"
-			className={className}
 		/>
 	);
 }
