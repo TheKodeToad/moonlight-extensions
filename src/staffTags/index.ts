@@ -1,5 +1,6 @@
-import { ExtensionWebExports } from "@moonlight-mod/types";
 import "./mappings";
+
+import { ExtensionWebExports } from "@moonlight-mod/types";
 
 export const patches: ExtensionWebExports["patches"] = [
 	{
@@ -23,7 +24,6 @@ export const patches: ExtensionWebExports["patches"] = [
 		]
 	}
 ];
-
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
 	settings: {
 		dependencies: [
@@ -41,7 +41,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "spacepack", id: "spacepack" },
 			{ ext: "staffTags", id: "common" },
 			"getGuildPermissionSpecMap:",
-			'.swatch,"aria-label"',
+			'.swatch,"aria-label"'
 		],
 		entrypoint: true // register the settings component
 	},
@@ -55,9 +55,9 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "componentEditor", id: "messages" },
 			{ ext: "staffTags", id: "common" },
 			"computeLurkerPermissionsAllowList())",
-			'"botTagVerified_',
-			'"memberInner_',
-			'"botTagCompact_'
+			"-botTagVerified",
+			"-memberInner",
+			"-botTagCompact"
 		],
 		entrypoint: true // register the decorators
 	},

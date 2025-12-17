@@ -24,19 +24,10 @@ import { Tag } from "staffTags/types";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
 const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode('.swatch,"aria-label"')[0].exports.Z;
-const SearchableSelect: React.FunctionComponent<any> = Object.values(componentsCommon).find((prop) => prop instanceof Function && prop.toString().includes("SearchableSelect")) as any;
+const SearchableSelect: React.FunctionComponent<any> = Object.values(componentsCommon).find(
+	(prop) => prop instanceof Function && prop.toString().includes("SearchableSelect")
+) as any;
 
-console.log({
-	Card,
-	FormSwitch,
-	FormItem,
-	FormText,
-	SearchableSelect,
-	staffTags$ChevronLargeDownIcon,
-	staffTags$ChevronLargeUpIcon,
-	TextInput,
-	TrashIcon
-});
 export default function TagsSettingsComponent({
 	value: tags = defaultConfig(),
 	setValue
@@ -201,7 +192,7 @@ function TagSettingsComponent({
 
 function TagPermissionsSelect({
 	value,
-	setValue,
+	setValue
 }: {
 	value: Tag["permissions"];
 	setValue: (value: Tag["permissions"]) => void;

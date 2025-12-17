@@ -24,6 +24,6 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@moonlight-mod/types": "^1.3.33"
+		"@moonlight-mod/types": "^1.3.37"
 	}
 }
