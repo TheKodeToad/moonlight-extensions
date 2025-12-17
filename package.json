@@ -25,5 +25,11 @@
 	},
 	"dependencies": {
 		"@moonlight-mod/types": "^1.3.37"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@moonlight-mod/esbuild-config",
+			"@moonlight-mod/eslint-config"
+		]
 	}
 }
