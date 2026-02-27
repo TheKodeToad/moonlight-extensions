@@ -2,9 +2,9 @@ import { ExtensionWebExports } from "@moonlight-mod/types";
 
 export const patches: ExtensionWebExports["patches"] = [
 	{
-		find: ".inviteButton,onClick:",
+		find: '{variant:"text-md/semibold",lineClamp:1,className:',
 		replace: {
-			match: /\(0,\i\.jsx\)\(\i\.\i,{variant:"text-md\/semibold",lineClamp:1,className:\i\.name,children:\i\.name\}\)/,
+			match: /\(0,\i\.jsx\)\(\i\.\i,{variant:"text-md\/semibold",lineClamp:1,className:\i\.\i,children:\i\.name\}\)/,
 			replacement: "(require('memberCount_components').wrapGuildNameComponent(arguments[0].guild,$&))"
 		}
 	}

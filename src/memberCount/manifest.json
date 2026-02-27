@@ -1,13 +1,13 @@
 {
 	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
 	"id": "memberCount",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"apiLevel": 2,
 	"meta": {
 		"name": "Member Count",
 		"tagline": "Show the online and total member count of each server.",
 		"description": "This plugin displays the online and total member count below the server name on the channel sidebar.  If it does not appear you might need to show the member list or click on a text channel (to be fixed).",
-		"changelog": "Fixed patch module match.",
+		"changelog": "Fixed for latest Discord changes.",
 		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/memberCount",
 		"tags": ["qol"]

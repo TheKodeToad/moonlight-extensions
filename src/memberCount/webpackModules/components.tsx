@@ -8,7 +8,7 @@ const { statusOnline, statusOffline, statusWrapper, count } = spacepack.findByCo
 	"statusOnline:",
 	"statusOffline:"
 )[0].exports as Record<string, string>;
-const locale: { getLocale(): string } = spacepack.findByCode("parse(document.cookie).locale")[0].exports.Z;
+const locale: { getLocale(): string } = spacepack.findByCode("parse(document.cookie).locale")[0].exports.A;
 
 export function wrapGuildNameComponent(guild, children: React.ReactNode) {
 	return <GuildNameWrapper guild={guild}>{children}</GuildNameWrapper>;
