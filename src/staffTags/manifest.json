@@ -1,12 +1,12 @@
 {
 	"$schema": "https://moonlight-mod.github.io/manifest.schema.json",
 	"id": "staffTags",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"apiLevel": 2,
 	"meta": {
 		"name": "Staff Tags",
 		"tagline": "Display tags next to staff usernames based on permissions.",
-		"changelog": "Fix for CSS class changes.",
+		"changelog": "Fixed for latest Discord changes (including CSS classes).",
 		"authors": ["TheKodeToad"],
 		"source": "https://github.com/TheKodeToad/moonlight-extensions/tree/main/src/staffTags",
 		"tags": ["qol", "chat"]

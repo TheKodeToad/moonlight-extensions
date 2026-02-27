@@ -1,6 +1,5 @@
 import { CustomComponentProps } from "@moonlight-mod/types/coreExtensions/moonbase";
 import {
-	default as componentsCommon,
 	Card,
 	FormSwitch,
 	FormItem,
@@ -22,11 +21,12 @@ import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { BLURPLE, defaultConfig, iconComponent, Icons } from "@moonlight-mod/wp/staffTags_common";
 import { Tag } from "staffTags/types";
 
-const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.Z;
-const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode('.swatch,"aria-label"')[0].exports.Z;
-const SearchableSelect: React.FunctionComponent<any> = Object.values(componentsCommon).find(
-	(prop) => prop instanceof Function && prop.toString().includes("SearchableSelect")
-) as any;
+const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.A;
+const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode(",colorPickerMiddle:", ",renderPopout:")[0]
+	.exports.A;
+const SearchableSelect: React.FunctionComponent<any> = Object.values(
+	spacepack.findByCode('("SearchableSelect")')[0].exports
+).find((prop) => prop instanceof Function && prop.toString().includes('"SearchableSelect"')) as any;
 
 export default function TagsSettingsComponent({
 	value: tags = defaultConfig(),

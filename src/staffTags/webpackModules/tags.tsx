@@ -3,12 +3,14 @@ import { GuildStore } from "@moonlight-mod/wp/common_stores";
 import message from "@moonlight-mod/wp/componentEditor_messages";
 import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
+import chatClasses from "@moonlight-mod/wp/discord/modules/messages/web/Message.css";
+// @ts-expect-error for some reason this isn't in the types
+import PermissionUtils from "@moonlight-mod/wp/discord/utils/PermissionUtils";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 import { defaultConfig, iconComponent } from "@moonlight-mod/wp/staffTags_common";
 import { Tag } from "staffTags/types";
 
-const PermissionUtils = spacepack.findByCode("computeLurkerPermissionsAllowList())")[0].exports;
 const computePermissions = Object.values(PermissionUtils).find(
 	(prop) =>
 		typeof prop === "function" &&
@@ -16,9 +18,24 @@ const computePermissions = Object.values(PermissionUtils).find(
 		!prop.toString().includes("forceRoles")
 ) as (options: object) => bigint;
 
-const botTagClasses = spacepack.findByCode("-botTagVerified")[0].exports;
-const memberListClasses = spacepack.findByCode("-memberInner")[0].exports;
-const chatClasses = spacepack.findByCode("-botTagCompact")[0].exports;
+const botTagClasses = (() => {
+	const { exports } = spacepack.findByCode("botTagVerified_")[0];
+
+	return {
+		botTagRegular: spacepack.findObjectFromValueSubstring(exports, "botTagRegular_"),
+		px: spacepack.findObjectFromValueSubstring(exports, "px_"),
+		rem: spacepack.findObjectFromValueSubstring(exports, "rem_"),
+		botText: spacepack.findObjectFromValueSubstring(exports, "botText_")
+	};
+})();
+const memberListClasses = (() => {
+	const { exports } = spacepack.findByCode("memberInner_")[0];
+
+	return {
+		botTag: spacepack.findObjectFromValueSubstring(exports, "botTag_"),
+		icon: spacepack.findObjectFromValueSubstring(exports, "icon_")
+	};
+})();
 
 type Location = "chat" | "memberList";
 

@@ -4,14 +4,14 @@ import { ExtensionWebExports } from "@moonlight-mod/types";
 
 export const patches: ExtensionWebExports["patches"] = [
 	{
-		find: 'location:"RepliedMessage"',
+		find: ".onClickReply,onMouseEnter:",
 		replace: {
 			match: /\.onClickReply,onMouseEnter:\i,onMouseLeave:\i}\),\i/,
 			replacement: '$&,require("staffTags_hooks").repliedMessageTag(arguments[0])'
 		}
 	},
 	{
-		find: ".lostPermission",
+		find: ",nudgeAlignIntoViewport:!1,useRawTargetDimensions:!0,animation:",
 		replace: [
 			{
 				match: /(?<=decorators:)\(0,\i\.jsx\)\(\i,\{.{10,200}?\}\)/,
@@ -41,7 +41,8 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "spacepack", id: "spacepack" },
 			{ ext: "staffTags", id: "common" },
 			"getGuildPermissionSpecMap:",
-			'.swatch,"aria-label"'
+			",colorPickerMiddle:",
+			'("SearchableSelect")'
 		],
 		entrypoint: true // register the settings component
 	},
@@ -50,14 +51,14 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ id: "react" },
 			{ id: "discord/components/common/index" },
 			{ id: "discord/Constants" },
+			{ id: "discord/utils/PermissionUtils" },
 			{ ext: "common", id: "ErrorBoundary" },
 			{ ext: "common", id: "stores" },
 			{ ext: "componentEditor", id: "messages" },
 			{ ext: "staffTags", id: "common" },
-			"computeLurkerPermissionsAllowList())",
-			"-botTagVerified",
-			"-memberInner",
-			"-botTagCompact"
+			"botTagVerified_",
+			"memberInner_",
+			"botTagCompact_"
 		],
 		entrypoint: true // register the decorators
 	},

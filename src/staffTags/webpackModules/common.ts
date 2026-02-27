@@ -55,7 +55,7 @@ const _icons = {
 	},
 	gear: {
 		discordName: "Gear",
-		displayName: "Gear",
+		displayName: "Gear"
 	},
 	shield: {
 		discordName: "Shield",

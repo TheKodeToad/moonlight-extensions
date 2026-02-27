@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@moonlight-mod/types':
-        specifier: ^1.3.37
-        version: 1.3.37
+        specifier: ^2026.2.2
+        version: 2026.2.2
     devDependencies:
       '@electron/asar':
         specifier: ^3.4.1
@@ -253,18 +253,19 @@ packages:
   '@moonlight-mod/lunast@1.0.1':
     resolution: {integrity: sha512-K3vxzDlfFuYKjciIW2FMlcZ1qrrkAGDGpSBlNqYGtJ0sMt9bRCd2lpSpg6AX/giSljDtmAUXa/5mOfUoDQxjBA==}
 
-  '@moonlight-mod/mappings@1.1.46':
-    resolution: {integrity: sha512-DQ5X7QhpT41gIDwpCfv+7RYMkLIwLXCV4PMwIszdgRuzB+o1H/UDrzCUn4FoF8ALNRedwAp5CTy+IQG2GZ8B2w==}
+  '@moonlight-mod/mappings@2026.2.2':
+    resolution: {integrity: sha512-/ZcGOF72j2fVtCwif+TjOiq6ISWE6ChT2TcnjlogkvJxzOTMnTgVsv0EtMufYCfxLK10ieHVhVeny0OIOxrvZg==}
     engines: {node: '>=22', npm: pnpm, pnpm: '>=10', yarn: pnpm}
     peerDependencies:
       '@moonlight-mod/lunast': ^1.0.1
-      '@moonlight-mod/moonmap': ^1.0.5
+      '@moonlight-mod/moonmap': ^1.0.7
 
-  '@moonlight-mod/moonmap@1.0.6':
-    resolution: {integrity: sha512-Upxj8NxNFS+ZP4ouyVc/n4WKbNM4uRU8XZKN0XV1yjFKlWEBFj5UbFOP1ZNTylWtgijYiMGcxnokF5Uwduy4pw==}
+  '@moonlight-mod/moonmap@1.0.7':
+    resolution: {integrity: sha512-K4TXEHYPgAtPjWSPWtO9+jzs7+/OYAF1GGkh1BtXrkeVT8vEFlNMztbZYy+N0bJLWzwytS4mrheMdSaBfJw6fw==}
+    engines: {node: '>=22', npm: pnpm, pnpm: '>=10', yarn: pnpm}
 
-  '@moonlight-mod/types@1.3.37':
-    resolution: {integrity: sha512-N5YyJO+nSWpdqd3xU/C+OXVsaf8Wnj/Nw5KsTIPu42wfAiWvbFQDMi9WFLZnRCtcpkk+3amRzEinAzAvgiyocQ==}
+  '@moonlight-mod/types@2026.2.2':
+    resolution: {integrity: sha512-nZT4IobyFVRSaIrwMAbZ02Qeql1kuM7Sk46JbUjF5inaBjW/GQf8oj/AziDQJsCBwZY0c5x2gX2YX/nJlIUgLg==}
     engines: {node: '>=22', npm: pnpm, pnpm: '>=10', yarn: pnpm}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -309,6 +310,9 @@ packages:
 
   '@types/node@18.19.130':
     resolution: {integrity: sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==}
+
+  '@types/node@22.14.0':
+    resolution: {integrity: sha512-Kmpl+z84ILoG+3T/zQFyAJsU6EPTmOCj8/2+83fSN6djd6I4o7uOuGIH6vq3PrjY5BGitSbFuMN18j3iknubbA==}
 
   '@types/platform@1.3.6':
     resolution: {integrity: sha512-ZmSaqHuvzv+jC232cFoz2QqPUkaj6EvMmCrWcx3WRr7xTPVFCMUOTcOq8m2d+Zw1iKRc1kDiaA+jtNrV0hkVew==}
@@ -1244,6 +1248,9 @@ packages:
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
@@ -1455,10 +1462,10 @@ snapshots:
       estree-toolkit: 1.7.13
       meriyah: 6.1.4
 
-  '@moonlight-mod/mappings@1.1.46(@moonlight-mod/lunast@1.0.1)(@moonlight-mod/moonmap@1.0.6)':
+  '@moonlight-mod/mappings@2026.2.2(@moonlight-mod/lunast@1.0.1)(@moonlight-mod/moonmap@1.0.7)':
     dependencies:
       '@moonlight-mod/lunast': 1.0.1
-      '@moonlight-mod/moonmap': 1.0.6
+      '@moonlight-mod/moonmap': 1.0.7
       '@types/chroma-js': 3.1.2
       '@types/flux': 3.1.15
       '@types/highlightjs': 9.12.6
@@ -1472,13 +1479,14 @@ snapshots:
       - react
       - use-sync-external-store
 
-  '@moonlight-mod/moonmap@1.0.6': {}
+  '@moonlight-mod/moonmap@1.0.7': {}
 
-  '@moonlight-mod/types@1.3.37':
+  '@moonlight-mod/types@2026.2.2':
     dependencies:
       '@moonlight-mod/lunast': 1.0.1
-      '@moonlight-mod/mappings': 1.1.46(@moonlight-mod/lunast@1.0.1)(@moonlight-mod/moonmap@1.0.6)
-      '@moonlight-mod/moonmap': 1.0.6
+      '@moonlight-mod/mappings': 2026.2.2(@moonlight-mod/lunast@1.0.1)(@moonlight-mod/moonmap@1.0.7)
+      '@moonlight-mod/moonmap': 1.0.7
+      '@types/node': 22.14.0
       '@types/react': 19.2.2
       csstype: 3.1.3
       standalone-electron-types: 1.0.0
@@ -1525,6 +1533,10 @@ snapshots:
   '@types/node@18.19.130':
     dependencies:
       undici-types: 5.26.5
+
+  '@types/node@22.14.0':
+    dependencies:
+      undici-types: 6.21.0
 
   '@types/platform@1.3.6': {}
 
@@ -2733,6 +2745,8 @@ snapshots:
       which-boxed-primitive: 1.1.1
 
   undici-types@5.26.5: {}
+
+  undici-types@6.21.0: {}
 
   uri-js@4.4.1:
     dependencies:
