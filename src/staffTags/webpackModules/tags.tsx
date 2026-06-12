@@ -1,8 +1,8 @@
 import ErrorBoundary from "@moonlight-mod/wp/common_ErrorBoundary";
 import { GuildStore } from "@moonlight-mod/wp/common_stores";
 import message from "@moonlight-mod/wp/componentEditor_messages";
-import { Tooltip } from "@moonlight-mod/wp/discord/components/common/index";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
+import VoidTooltip from "@moonlight-mod/wp/discord/design/components/Tooltip/web/VoidTooltip";
 import chatClasses from "@moonlight-mod/wp/discord/modules/messages/web/Message.css";
 // @ts-expect-error for some reason this isn't in the types
 import PermissionUtils from "@moonlight-mod/wp/discord/utils/PermissionUtils";
@@ -136,7 +136,7 @@ function IconTagComponent({
 
 	return (
 		<span style={{ color: location === "chat" ? "var(--header-primary)" : undefined }}>
-			<Tooltip text={tag.label}>
+			<VoidTooltip text={tag.label}>
 				{(props) => (
 					<Icon
 						className={memberListClasses.icon + " " + className}
@@ -144,7 +144,7 @@ function IconTagComponent({
 						{...props}
 					/>
 				)}
-			</Tooltip>
+			</VoidTooltip>
 		</span>
 	);
 }

@@ -1,4 +1,3 @@
-import Components from "@moonlight-mod/wp/discord/components/common/index";
 import { Tag } from "staffTags/types";
 
 export const BLURPLE = 0x5865f2;
@@ -46,31 +45,31 @@ export function defaultConfig(): Tag[] {
 
 const _icons = {
 	hammer: {
-		discordName: "Hammer",
+		discordName: "staffTags$HammerIcon",
 		displayName: "Hammer"
 	},
 	wrench: {
-		discordName: "Wrench",
+		discordName: "staffTags$WrenchIcon",
 		displayName: "Wrench"
 	},
 	gear: {
-		discordName: "Gear",
+		discordName: "staffTags$GearIcon",
 		displayName: "Gear"
 	},
 	shield: {
-		discordName: "Shield",
+		discordName: "staffTags$ShieldIcon",
 		displayName: "Shield"
 	},
 	crown: {
-		discordName: "Crown",
+		discordName: "staffTags$CrownIcon",
 		displayName: "Crown"
 	},
 	key: {
-		discordName: "Key",
+		discordName: "staffTags$KeyIcon",
 		displayName: "Key"
 	},
 	swords: {
-		discordName: "Moderation",
+		discordName: "staffTags$ModerationIcon",
 		displayName: "Swords"
 	}
 };
@@ -87,5 +86,13 @@ export function iconComponent(id: string): React.FunctionComponent<any> | undefi
 
 	if (icon === undefined) return;
 
-	return Components[`${icon.discordName}Icon`] ?? Components[`staffTags$${icon.discordName}Icon`];
+	const prefix = "discord/modules/icons/web/";
+
+	return require(prefix + icon.discordName)?.default;
+}
+
+export let ColorSwatch: React.FunctionComponent<any> | null = null;
+
+export function setColorSwatch(value) {
+	ColorSwatch = value;
 }

@@ -1,14 +1,8 @@
 import { CustomComponentProps } from "@moonlight-mod/types/coreExtensions/moonbase";
-import {
-	Card,
-	FormSwitch,
-	FormItem,
-	FormText,
-	staffTags$ChevronLargeDownIcon,
-	staffTags$ChevronLargeUpIcon,
-	TrashIcon
-} from "@moonlight-mod/wp/discord/components/common/index";
+import TrashIcon from "@moonlight-mod/wp/discord/modules/icons/web/TrashIcon";
 import PanelButton from "@moonlight-mod/wp/discord/components/common/PanelButton";
+import staffTags$ChevronLargeUpIcon from "@moonlight-mod/wp/discord/modules/icons/web/staffTags$ChevronLargeUpIcon";
+import staffTags$ChevronLargeDownIcon from "@moonlight-mod/wp/discord/modules/icons/web/staffTags$ChevronLargeDownIcon";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import { cardHeader } from "@moonlight-mod/wp/discord/modules/guild_settings/web/AppCard.css";
 import { marginBottom8, marginTop20 } from "@moonlight-mod/wp/discord/styles/shared/Margins.css";
@@ -18,15 +12,16 @@ import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import Moonbase from "@moonlight-mod/wp/moonbase_moonbase";
 import React, { useMemo } from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
-import { BLURPLE, defaultConfig, iconComponent, Icons } from "@moonlight-mod/wp/staffTags_common";
+import { BLURPLE, defaultConfig, iconComponent, Icons, ColorSwatch } from "@moonlight-mod/wp/staffTags_common";
 import { Tag } from "staffTags/types";
+import FieldSet from "@moonlight-mod/wp/discord/design/components/Form/web/FieldSet";
+import Card from "@moonlight-mod/wp/discord/components/common/Card";
+import ManaFormSwitch from "@moonlight-mod/wp/discord/design/components/Switch/web/ManaFormSwitch";
 
 const { getGuildPermissionSpecMap } = spacepack.findByCode("getGuildPermissionSpecMap:")[0].exports.A;
-const ColorSwatch: React.FunctionComponent<any> = spacepack.findByCode(",colorPickerMiddle:", ",renderPopout:")[0]
-	.exports.A;
 const SearchableSelect: React.FunctionComponent<any> = Object.values(
-	spacepack.findByCode('("SearchableSelect")')[0].exports
-).find((prop) => prop instanceof Function && prop.toString().includes('"SearchableSelect"')) as any;
+	spacepack.findByCode('??"single"===')[0].exports
+).find((prop) => prop instanceof Function && prop.toString().includes('??"single"===')) as any;
 
 export default function TagsSettingsComponent({
 	value: tags = defaultConfig(),
@@ -35,7 +30,7 @@ export default function TagsSettingsComponent({
 	const onChange = () => setValue(tags);
 
 	return (
-		<FormItem title="Tags" className={marginTop20}>
+		<FieldSet label="Tags" className={marginTop20}>
 			<Flex direction={Flex.Direction.VERTICAL} style={{ gap: 16 }} className={marginBottom8}>
 				{tags.map((tag, i) => (
 					<TagSettingsComponent
@@ -83,7 +78,7 @@ export default function TagsSettingsComponent({
 					Restore Defaults
 				</Button>
 			</Flex>
-		</FormItem>
+		</FieldSet>
 	);
 }
 
@@ -134,7 +129,7 @@ function TagSettingsComponent({
 				<PanelButton icon={TrashIcon} tooltipText="Remove Tag" onClick={onDelete} />
 			</Flex>
 			<div style={{ padding: 16 }}>
-				<FormSwitch
+				<ManaFormSwitch
 					label="Use role color"
 					checked={tag.useRoleColor}
 					onChange={(value) => {
@@ -142,49 +137,44 @@ function TagSettingsComponent({
 						onChange();
 					}}
 				/>
-				<FormItem title={tag.useRoleColor ? "Fallback Color" : "Color"} className={marginTop20}>
-					<span></span>
-					<ColorSwatch
+				<FieldSet label={tag.useRoleColor ? "Fallback Color" : "Color"} className={marginTop20}>
+					{ColorSwatch && <ColorSwatch
 						color={tag.color}
 						onChange={(value) => {
 							tag.color = value;
 							onChange();
 						}}
 						showEyeDropper={true}
-					/>
-				</FormItem>
-				<FormText
-					// @ts-expect-error Import not available
-					type={"description"}
+					/>}
+				</FieldSet>
+				<p 
+					className={marginTop20}
 					style={{ display: tag.useRoleColor ? undefined : "none" }}
 				>
 					This will only be used for the Text style when there is no role color.
-				</FormText>
-				<FormItem title="Tags" className={marginTop20}>
+				</p>
+				<FieldSet label="Icon" className={marginTop20}>
 					<TagIconSelect
 						value={tag.icon}
 						setValue={(value) => {
 							tag.icon = value;
 							onChange();
 						}}
-						className={marginBottom8}
 					/>
-				</FormItem>
-				<FormText
-					// @ts-expect-error Import not available
-					type={"description"}
-				>
+				</FieldSet>
+				<p className={marginTop20}>
 					This will only show for the Icon style.
-				</FormText>
-				<FormItem title="Permissions" className={marginTop20}>
+				</p>
+				<FieldSet label="Permissions" className={marginTop20}>
 					<TagPermissionsSelect
 						value={tag.permissions}
 						setValue={(value) => {
+							console.log(value);
 							tag.permissions = value;
 							onChange();
 						}}
 					/>
-				</FormItem>
+				</FieldSet>
 			</div>
 		</Card>
 	);
@@ -202,9 +192,13 @@ function TagPermissionsSelect({
 	return (
 		<SearchableSelect
 			options={permissionOptions}
+			formatOption={(opt) => ({
+				...opt,
+				id: opt.value,
+			})}
 			value={value}
-			onChange={setValue}
-			multi={true}
+			onSelectionChange={setValue}
+			selectionMode="multiple"
 			placeholder="Select permissions"
 		/>
 	);
@@ -213,28 +207,26 @@ function TagPermissionsSelect({
 function TagIconSelect({
 	value,
 	setValue,
-	className
 }: {
 	value: Tag["icon"];
 	setValue: (value: Tag["icon"]) => void;
-	className: string;
 }) {
+	console.log("current icon " + value);
 	return (
 		<SearchableSelect
-			options={Object.entries(Icons).map(([key, icon]) => ({ label: icon.displayName, value: key }))}
+			options={Object.entries(Icons).map(([key, value]) => ({
+				value: key,
+				label: value.displayName,
+			}))}
+			formatOption={(opt) => ({
+				...opt,
+				id: opt.value,
+				leading: iconComponent(opt.value),
+			})}
 			value={value}
-			onChange={setValue}
-			renderOptionPrefix={(option) => {
-				if (option == null) return undefined;
-
-				const Icon = iconComponent(option.value);
-
-				if (Icon === undefined) return undefined;
-
-				return <Icon size="sm" />;
-			}}
+			onSelectionChange={setValue}
+			selectionMode="single"
 			placeholder="Select an icon"
-			className={className}
 		/>
 	);
 }

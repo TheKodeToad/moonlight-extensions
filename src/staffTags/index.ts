@@ -22,18 +22,30 @@ export const patches: ExtensionWebExports["patches"] = [
 				replacement: 'require("staffTags_hooks").shouldShowCrown()&&$&'
 			}
 		]
+	},
+	{
+		// borrowed from vencord: https://github.com/Vendicated/Vencord/blob/7dca07569d656ac1fd399e4d8dfecdc4ebaaa94d/src/plugins/_core/concatenatedComponentExtractor.tsx#L19-L25
+		find: "Qp04hK),focusProps:",
+		replace: [
+			{
+				match: /(?=function (\i)\(\i\)\{let\{.{0,100}suggestedColors:)/,
+				replacement: 'require("staffTags_common").setColorSwatch($1);'
+			}
+		]
 	}
 ];
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
 	settings: {
 		dependencies: [
 			{ id: "react" },
-			{ id: "discord/components/common/index" },
 			{ id: "discord/uikit/legacy/Button" },
 			{ id: "discord/uikit/Flex" },
 			{ id: "discord/uikit/TextInput" },
 			{ id: "discord/styles/shared/Margins.css" },
+			{ id: "discord/modules/icons/web/TrashIcon" },
 			{ id: "discord/components/common/PanelButton" },
+			{ id: "discord/modules/icons/web/staffTags$ChevronLargeUpIcon" },
+			{ id: "discord/modules/icons/web/staffTags$ChevronLargeDownIcon" },
 			{ id: "discord/modules/guild_settings/web/AppCard.css" },
 			{ id: "discord/Constants" },
 			{ ext: "common", id: "stores" },
@@ -41,15 +53,15 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 			{ ext: "spacepack", id: "spacepack" },
 			{ ext: "staffTags", id: "common" },
 			"getGuildPermissionSpecMap:",
-			",colorPickerMiddle:",
-			'("SearchableSelect")'
+			'??"single"==='
 		],
 		entrypoint: true // register the settings component
 	},
 	tags: {
 		dependencies: [
 			{ id: "react" },
-			{ id: "discord/components/common/index" },
+			{ id: "discord/design/components/Tooltip/web/VoidTooltip" },
+			{ id: "discord/design/components/Switch/web/ManaFormSwitch" },
 			{ id: "discord/Constants" },
 			{ id: "discord/utils/PermissionUtils" },
 			{ ext: "common", id: "ErrorBoundary" },
@@ -62,9 +74,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
 		],
 		entrypoint: true // register the decorators
 	},
-	common: {
-		dependencies: [{ id: "discord/components/common/index" }]
-	},
+	common: {},
 	hooks: {
 		dependencies: [
 			{ id: "react" },
